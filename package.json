@@ -5,6 +5,9 @@
       "workerify"
     ]
   },
+  "dependencies": {
+    "workerify": "^0.3.0"
+  },
   "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows",
   "devDependencies": {
     "browserify": "^6.0.2",
@@ -20,8 +23,7 @@
     "karma-mocha": "^0.1.9",
     "karma-sinon-chai": "^0.2.0",
     "load-grunt-config": "^0.13.2",
-    "mocha": "^1.21.4",
-    "workerify": "^0.3.0"
+    "mocha": "^1.21.4"
   },
   "homepage": "https://github.com/chrisguttandin/worker-timers",
   "license": "MIT",
