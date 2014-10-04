@@ -5,7 +5,7 @@
       "workerify"
     ]
   },
-  "description": "A replacement for setInterval() and setTimeout() which works unfocused windows",
+  "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows",
   "devDependencies": {
     "browserify": "^6.0.2",
     "grunt": "^0.4.5",
