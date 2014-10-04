@@ -14,8 +14,8 @@ WorkerTimers do.
 
 ## Getting Started
 
-WorkerTimers are available as a package on [npm](https://www.npmjs.org/). Simply run the following
-command to install it:
+WorkerTimers are available as a package on [npm](https://www.npmjs.org/package/worker-timers).
+Simply run the following command to install it:
 
 ```shell
 npm install worker-timers
