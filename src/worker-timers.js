@@ -1,13 +1,16 @@
 'use strict';
 
-var lastIntervalId = -1,
-    lastTimeoutId = -1,
-    scheduledIntervalFunctions = new Map(),
-    scheduledTimeoutFunctions = new Map(),
+var IdentifierMap = require('./helper/identifier-map.js').IdentifierMap,
+    scheduledIntervalFunctions,
+    scheduledTimeoutFunctions,
     worker = new Worker('./worker/timing-worker.js');
+
+scheduledIntervalFunctions = new IdentifierMap();
+scheduledTimeoutFunctions = new IdentifierMap();
 
 worker.addEventListener('message', function (event) {
     var data,
+        func,
         id,
         type;
 
@@ -16,12 +19,16 @@ worker.addEventListener('message', function (event) {
     type = data.type;
 
     if (type === 'interval') {
-        if (scheduledIntervalFunctions.has(id)) {
-            scheduledIntervalFunctions.get(id)();
+        func = scheduledIntervalFunctions.get(id);
+
+        if (func) {
+            func();
         }
     } else { // type === 'timeout'
-        if (scheduledTimeoutFunctions.has(id)) {
-            scheduledTimeoutFunctions.get(id)();
+        func = scheduledTimeoutFunctions.get(id);
+
+        if (func) {
+            func();
 
             // a timeout can be savely deleted because it is only called once
             scheduledTimeoutFunctions.delete(id);
@@ -50,12 +57,7 @@ function clearTimeout(id) {
 }
 
 function setInterval(func, delay) {
-    var id;
-
-    lastIntervalId += 1;
-    id = lastIntervalId;
-
-    scheduledIntervalFunctions.set(id, func);
+    var id = scheduledIntervalFunctions.set(func);
 
     worker.postMessage({
         action: 'set',
@@ -68,12 +70,7 @@ function setInterval(func, delay) {
 }
 
 function setTimeout(func, delay) {
-    var id;
-
-    lastTimeoutId += 1;
-    id = lastTimeoutId;
-
-    scheduledTimeoutFunctions.set(id, func);
+    var id = scheduledTimeoutFunctions.set(func);
 
     worker.postMessage({
         action: 'set',
