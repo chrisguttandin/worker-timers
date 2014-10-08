@@ -49,7 +49,7 @@ describe('workerTimers', function () {
 
                 expect(elapsed).to.be.closeTo(100 * calls, 10);
 
-                if (calls > 4) { // test five calls
+                if (calls > 3) { // test five calls
                     done();
                 }
             }
