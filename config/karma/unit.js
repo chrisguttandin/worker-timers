@@ -6,23 +6,23 @@ module.exports = function (config) {
 
     config.set({
 
-        autoWatch: true,
-
         browserify: {
-            debug: false,
-            files: [
-                '../../test/**/*.js',
-                {
-                    included: false,
-                    pattern: '../../src/**/*.js'
-                }
-            ],
             transform: browserify.transform
         },
 
         browsers: [
             'ChromeCanary',
             'FirefoxAurora'
+        ],
+
+        files: [
+            {
+                included: false,
+                pattern: '../../src/**/*.js',
+                served: false,
+                watched: true,
+            },
+            '../../test/unit/**/*.js'
         ],
 
         frameworks: [
@@ -32,7 +32,7 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            '/**/*.browserify': 'browserify'
+            '../../test/**/*.js': 'browserify'
         }
 
     });
