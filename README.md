@@ -1,6 +1,6 @@
 # worker-timers
 
-> A replacement for setInterval() and setTimeout() which works in unfocused windows.
+**A replacement for setInterval() and setTimeout() which works in unfocused windows.**
 
 ## Motivation
 
