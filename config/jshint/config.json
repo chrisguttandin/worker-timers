@@ -7,6 +7,7 @@
     "esnext": true,
     "globals": {
         "module": false,
+        "process": false,
         "require": false
     },
     "globalstrict": true,

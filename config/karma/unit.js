@@ -10,13 +10,6 @@ module.exports = function (config) {
                 transform: browserify.transform
             },
 
-            customLaunchers: {
-                ChromeTravisCI: {
-                    base: 'Chrome',
-                    flags: [ '--no-sandbox' ]
-                }
-            },
-
             files: [
                 {
                     included: false,
@@ -41,9 +34,26 @@ module.exports = function (config) {
 
     if (process.env.TRAVIS) {
         configuration.browsers = [
-            'ChromeTravisCI',
-            'Firefox'
+            'ChromeCanarySauceLabs',
+            'FirefoxDeveloperSauceLabs'
         ];
+
+        configuration.captureTimeout = 120000;
+
+        configuration.customLaunchers = {
+            ChromeCanarySauceLabs: {
+                base: 'SauceLabs',
+                browserName: 'chrome',
+                platform: 'OS X 10.10',
+                version: 'dev'
+            },
+            FirefoxDeveloperSauceLabs: {
+                base: 'SauceLabs',
+                browserName: 'firefox',
+                platform: 'OS X 10.10',
+                version: 'dev'
+            }
+        };
     } else {
         configuration.browsers = [
             'ChromeCanary',
