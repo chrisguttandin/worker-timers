@@ -39,19 +39,24 @@ describe('workerTimers', function () {
         });
 
         it('should constantly call a function for the given delay', function (done) {
-            var calls = 0,
-                before = window.performance.now();
+            var before = window.performance.now(),
+                calls = 0;
 
             function func() {
-                var elapsed = window.performance.now() - before;
+                var elapsed,
+                    now;
 
-                calls += 1;
+                now = window.performance.now();
+                elapsed = now - before;
 
-                expect(elapsed).to.be.closeTo(100 * calls + 5, 10);
+                expect(elapsed).to.be.at.least(100);
 
-                if (calls > 3) { // test five calls
+                if (calls > 4) { // test five calls
                     done();
                 }
+
+                before = now;
+                calls += 1;
             }
 
             workerTimers.setInterval(func, 100);
@@ -70,13 +75,15 @@ describe('workerTimers', function () {
         it('should postpone a function for the given delay', function (done) {
             var before = window.performance.now();
 
-            workerTimers.setTimeout(function () {
+            function func() {
                 var elapsed = window.performance.now() - before;
 
-                expect(elapsed).to.be.closeTo(100 + 5, 10);
+                expect(elapsed).to.be.at.least(100);
 
                 done();
-            }, 100);
+            }
+
+            workerTimers.setTimeout(func, 100);
         });
 
     });
