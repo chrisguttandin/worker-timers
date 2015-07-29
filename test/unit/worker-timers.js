@@ -32,8 +32,14 @@ describe('workerTimers', function () {
 
     describe('setInterval()', function () {
 
+        var id;
+
+        afterEach(function () {
+            workerTimers.clearTimeout(id);
+        });
+
         it('should return a numeric id', function () {
-            var id = workerTimers.setInterval(function () {}, 0);
+            id = workerTimers.setInterval(function () {}, 0);
 
             expect(id).to.be.a('number');
         });
@@ -59,15 +65,21 @@ describe('workerTimers', function () {
                 calls += 1;
             }
 
-            workerTimers.setInterval(func, 100);
+            id = workerTimers.setInterval(func, 100);
         });
 
     });
 
     describe('setTimeout()', function () {
 
+        var id;
+
+        afterEach(function () {
+            workerTimers.clearInterval(id);
+        });
+
         it('should return a numeric id', function () {
-            var id = workerTimers.setTimeout(function () {}, 0);
+            id = workerTimers.setTimeout(function () {}, 0);
 
             expect(id).to.be.a('number');
         });
@@ -83,7 +95,7 @@ describe('workerTimers', function () {
                 done();
             }
 
-            workerTimers.setTimeout(func, 100);
+            id = workerTimers.setTimeout(func, 100);
         });
 
     });
