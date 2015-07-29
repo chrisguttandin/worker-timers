@@ -4,37 +4,46 @@ var browserify = require('../../package.json').browserify;
 
 module.exports = function (config) {
 
-    config.set({
+    var configuration = {
 
-        browserify: {
-            transform: browserify.transform
-        },
+            browserify: {
+                transform: browserify.transform
+            },
 
-        browsers: [
+            files: [
+                {
+                    included: false,
+                    pattern: '../../src/**/*.js',
+                    served: false,
+                    watched: true,
+                },
+                '../../test/unit/**/*.js'
+            ],
+
+            frameworks: [
+                'browserify',
+                'mocha',
+                'sinon-chai' // implicitly uses chai too
+            ],
+
+            preprocessors: {
+                '../../test/**/*.js': 'browserify'
+            }
+
+        };
+
+    if (process.env.TRAVIS) {
+        configuration.browsers = [
+            'Chrome',
+            'Firefox'
+        ];
+    } else {
+        configuration.browsers = [
             'ChromeCanary',
             'FirefoxDeveloper'
-        ],
+        ];
+    }
 
-        files: [
-            {
-                included: false,
-                pattern: '../../src/**/*.js',
-                served: false,
-                watched: true,
-            },
-            '../../test/unit/**/*.js'
-        ],
-
-        frameworks: [
-            'browserify',
-            'mocha',
-            'sinon-chai' // implicitly uses chai too
-        ],
-
-        preprocessors: {
-            '../../test/**/*.js': 'browserify'
-        }
-
-    });
+    config.set(configuration);
 
 };
