@@ -55,7 +55,7 @@ module.exports = function (config) {
             }
         };
 
-        configuration.tunnelIdentifier = process.env.TRAVIS_BUILD_NUMBER;
+        configuration.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
     } else {
         configuration.browsers = [
             'ChromeCanary',
