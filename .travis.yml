@@ -1,5 +1,3 @@
-addons:
-  sauce_connect: true
 env:
   global:
     - secure: DN1FEt593lxQIXL6+UL54ZEC31iD5CdwWau4tTQeVpoxSEQBzRLr4Rd8RzPbRtkaFeA8tDr+URvgXtvDR+hJwvgMI4rT+fKVrF/bo8hSXNTjfNgoTmn1ZA0qShq2LU9mNxGJGZeuvyJzvUHhvtvA4YQUyGoYG5nn7ursyzsum/o=
