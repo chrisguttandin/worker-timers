@@ -2,6 +2,9 @@
 
 **A replacement for setInterval() and setTimeout() which works in unfocused windows.**
 
+[![dependencies](https://img.shields.io/david/chrisguttandin/worker-timers.svg?style=flat-square)](https://www.npmjs.com/package/worker-timers)
+[![version](https://img.shields.io/npm/v/worker-timers.svg?style=flat-square)](https://www.npmjs.com/package/worker-timers)
+
 ## Motivation
 
 For scripts that rely on [WindowTimers](http://www.w3.org/TR/html5/webappapis.html#timers) like
