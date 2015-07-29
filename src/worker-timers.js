@@ -57,12 +57,17 @@ function clearTimeout(id) {
 }
 
 function setInterval(func, delay) {
-    var id = scheduledIntervalFunctions.set(func);
+    var id = scheduledIntervalFunctions.set(function () {
+            func();
+
+            setInterval(func, delay);
+        });
 
     worker.postMessage({
         action: 'set',
         delay: delay,
         id: id,
+        now: performance.now(),
         type: 'interval'
     });
 
@@ -76,6 +81,7 @@ function setTimeout(func, delay) {
         action: 'set',
         delay: delay,
         id: id,
+        now: performance.now(),
         type: 'timeout'
     });
 

@@ -7,12 +7,25 @@ var IdentifierMap = require('./../helper/identifier-map.js').IdentifierMap,
 scheduledIntervalIdentifiers = new IdentifierMap();
 scheduledTimeoutIdentifiers = new IdentifierMap();
 
+function setTimeoutCallback (identifiers, id, expected, data) {
+    var now = performance.now();
+
+    if (now > expected) {
+        self.postMessage(data);
+    } else {
+        identifiers.set(id, setTimeout(setTimeoutCallback, (expected - now), identifiers, id, expected, data));
+    }
+}
+
 self.addEventListener('message', function (event) {
     var action,
         data,
         delay,
         id,
         identifier,
+        elapsed,
+        expected,
+        now,
         type;
 
     data = event.data;
@@ -38,6 +51,14 @@ self.addEventListener('message', function (event) {
         }
     } else { // action === 'set'
         delay = data.delay;
+        now = performance.now();
+        elapsed = now - data.now;
+
+        if (elapsed > 0) {
+            delay -= elapsed;
+        }
+
+        expected = now + delay;
 
         data = {
             id: id,
@@ -45,13 +66,9 @@ self.addEventListener('message', function (event) {
         };
 
         if (type === 'interval') {
-            scheduledIntervalIdentifiers.set(id, setInterval(function () {
-                self.postMessage(data);
-            }, delay));
+            scheduledIntervalIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledIntervalIdentifiers, id, expected, data));
         } else { // type === 'timeout'
-            scheduledTimeoutIdentifiers.set(id, setTimeout(function () {
-                self.postMessage(data);
-            }, delay));
+            scheduledTimeoutIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledTimeoutIdentifiers, id, expected, data));
         }
     }
 });
