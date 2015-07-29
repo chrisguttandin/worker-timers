@@ -1,9 +1,8 @@
 addons:
   sauce_connect:
-    username:
-      secure: EgqnS9rTmIGzu8FL2pJcyf34akKQWd2LJaAIaRb0TjEsHxiEbVGhJlwg9Tg6qRK3dyiLIbwJoj16IulZV343euwCmHUtQPkVArrv2p1uikoG6lLe0N2fgkDGT61FLV9tFWRLjvMO6xBZJ9doBt+/wUZLfA2zM6G6JHxaLfGHio8=
+    username: chrisguttandin
     access_key:
-      secure: TOVAOWF2dsYY+dpBukq/UCkStU/zYuuf0+As/6/gv1gK1n+azCUP1o6czOdGj2mTe6A4Jg9B5gzPconrgyuC78FBPxaZCR594RqGlLDZT77VrwM2i6HuQP2+YXXBNGQkl7baVxGiL0+i39fRH7QsxMX5pm4R/bFMLM1IhAoUiGY=
+      secure: Ld2Fj1ry3c0FvxMC6PvxUhH3QwlozSyHPrGK4tSUFGDEFpk/+aP1ifXxXiGvOern7fYV4CQY97WLSJQ/1ADzQv5mFi3sf2jx7I8mjKU1u7TIKW6R9ZHmk2GmDs7Ahukx+78bwye10aw/2FCK3v6vjzuyIvQeUhwRciM8Ttc3ePQ=
 language: node_js
 node_js:
     - "0.12"
