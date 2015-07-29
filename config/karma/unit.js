@@ -10,6 +10,13 @@ module.exports = function (config) {
                 transform: browserify.transform
             },
 
+            customLaunchers: {
+                ChromeTravisCI: {
+                    base: 'Chrome',
+                    flags: [ '--no-sandbox' ]
+                }
+            },
+
             files: [
                 {
                     included: false,
@@ -34,7 +41,7 @@ module.exports = function (config) {
 
     if (process.env.TRAVIS) {
         configuration.browsers = [
-            'Chrome',
+            'ChromeTravisCI',
             'Firefox'
         ];
     } else {
