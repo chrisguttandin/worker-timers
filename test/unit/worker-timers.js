@@ -47,7 +47,7 @@ describe('workerTimers', function () {
 
                 calls += 1;
 
-                expect(elapsed).to.be.closeTo(100 * calls, 10);
+                expect(elapsed).to.be.closeTo(100 * calls + 5, 10);
 
                 if (calls > 3) { // test five calls
                     done();
@@ -73,7 +73,7 @@ describe('workerTimers', function () {
             workerTimers.setTimeout(function () {
                 var elapsed = window.performance.now() - before;
 
-                expect(elapsed).to.be.closeTo(100, 10);
+                expect(elapsed).to.be.closeTo(100 + 5, 10);
 
                 done();
             }, 100);
