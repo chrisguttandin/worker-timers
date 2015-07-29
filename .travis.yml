@@ -4,3 +4,4 @@ before_script:
 language: node_js
 node_js:
     - "0.12"
+sudo: false
