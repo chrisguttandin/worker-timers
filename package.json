@@ -30,7 +30,6 @@
   "license": "MIT",
   "main": "src/worker-timers.js",
   "name": "worker-timers",
-  "readme": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/chrisguttandin/worker-timers.git"
