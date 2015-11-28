@@ -27,6 +27,15 @@
     "mocha": "^2.3.4"
   },
   "homepage": "https://github.com/chrisguttandin/worker-timers",
+  "keywords": [
+    "clearInterval",
+    "clearTimeout",
+    "interval",
+    "setInterval",
+    "setTimeout",
+    "Web Workers",
+    "WindowTimers"
+  ],
   "license": "MIT",
   "main": "src/worker-timers.js",
   "name": "worker-timers",
