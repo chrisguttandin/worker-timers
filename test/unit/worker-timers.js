@@ -15,6 +15,7 @@ describe('workerTimers', function () {
 
             setTimeout(done, 200); // wait 200ms to be sure the function never gets called
         });
+
     });
 
     describe('clearTimeout()', function () {
@@ -28,6 +29,7 @@ describe('workerTimers', function () {
 
             setTimeout(done, 200); // wait 200ms to be sure the function never gets called
         });
+
     });
 
     describe('setInterval()', function () {
