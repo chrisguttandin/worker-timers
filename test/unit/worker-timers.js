@@ -6,7 +6,7 @@ describe('workerTimers', function () {
 
     describe('clearInterval()', function () {
 
-        it('should not call the function after clearing the timeout', function (done) {
+        it('should not call the function after clearing the interval', function (done) {
             var id = workerTimers.setInterval(function () {
                     throw 'this should never be called';
                 }, 100);
@@ -44,7 +44,7 @@ describe('workerTimers', function () {
             expect(id).to.be.a('number');
         });
 
-        it('should constantly call a function for the given delay', function (done) {
+        it('should constantly call a function with the given delay', function (done) {
             var before = window.performance.now(),
                 calls = 0;
 
