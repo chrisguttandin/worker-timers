@@ -16,6 +16,23 @@ describe('workerTimers', function () {
             setTimeout(done, 200); // wait 200ms to be sure the function never gets called
         });
 
+        it('should not call the function anymore after clearing the interval after the first callback', function (done) {
+            var id = null,
+                func;
+
+            func = sinon.stub();
+            id = workerTimers.setInterval(function () {
+                if (id === null) {
+                    throw 'this should never be called';
+                }
+
+                workerTimers.clearInterval(id);
+                id = null;
+            }, 50);
+
+            setTimeout(done, 200); // wait 200ms to be sure the function gets not called anymore
+        });
+
     });
 
     describe('clearTimeout()', function () {
