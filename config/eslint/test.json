@@ -1,0 +1,13 @@
+{
+    "env": {
+        "mocha": true,
+        "node": true
+    },
+    "extends": "eslint-config-holy-grail",
+    "globals": {
+        "expect": false
+    },
+    "rules": {
+        "no-unused-expressions": 0
+    }
+}

@@ -5,7 +5,7 @@ module.exports = {
         'karma:continuous'
     ],
     lint: [
-        'jshint'
+        'eslint'
     ],
     test: [
         'karma:test'

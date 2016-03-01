@@ -3,7 +3,7 @@
 var IdentifierMap = require('./helper/identifier-map.js').IdentifierMap,
     scheduledIntervalFunctions,
     scheduledTimeoutFunctions,
-    worker = new Worker('./worker/timing-worker.js');
+    worker = new Worker('./worker/timing-worker.js'); // eslint-disable-line no-undef
 
 scheduledIntervalFunctions = new IdentifierMap();
 scheduledTimeoutFunctions = new IdentifierMap();
@@ -57,6 +57,7 @@ function clearTimeout(id) {
 }
 
 function setInterval(func, delay) {
+    /* eslint-disable indent */
     var id = scheduledIntervalFunctions.set(function () {
             func();
 
@@ -64,16 +65,17 @@ function setInterval(func, delay) {
                 action: 'set',
                 delay: delay,
                 id: id,
-                now: performance.now(),
+                now: performance.now(), // eslint-disable-line no-undef
                 type: 'interval'
             });
         });
+    /* eslint-enable indent */
 
     worker.postMessage({
         action: 'set',
         delay: delay,
         id: id,
-        now: performance.now(),
+        now: performance.now(), // eslint-disable-line no-undef
         type: 'interval'
     });
 
@@ -87,7 +89,7 @@ function setTimeout(func, delay) {
         action: 'set',
         delay: delay,
         id: id,
-        now: performance.now(),
+        now: performance.now(), // eslint-disable-line no-undef
         type: 'timeout'
     });
 
