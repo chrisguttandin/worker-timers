@@ -38,7 +38,7 @@ module.exports = function (config) {
         configuration.browsers = [
             'ChromeCanarySauceLabs',
             'ChromeSauceLabs',
-            'FirefoxDeveloperSauceLabs',
+            // 'FirefoxDeveloperSauceLabs',
             'FirefoxSauceLabs'
         ];
 
