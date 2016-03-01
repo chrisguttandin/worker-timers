@@ -38,7 +38,7 @@ self.addEventListener('message', function (event) { // eslint-disable-line no-un
             identifier = scheduledIntervalIdentifiers.get(id);
 
             if (identifier !== undefined) {
-                clearInterval(identifier);
+                clearTimeout(identifier);
                 scheduledIntervalIdentifiers.delete(id);
             }
         } else { // type === 'timeout'
