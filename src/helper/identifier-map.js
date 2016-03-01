@@ -9,7 +9,7 @@ function IdentifierMap() {
 IdentifierMap.prototype.delete = function (id) {
     var index = this._entries.indexOf(id);
 
-    if (index) {
+    if (index > -1) {
         this._entries.splice(index, 1);
         this._values.splice(index, 1);
     }
