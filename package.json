@@ -16,7 +16,7 @@
     "grunt": "^1.0.1",
     "grunt-cli": "^1.0.0",
     "grunt-githooks": "^0.6.0",
-    "grunt-karma": "^0.12.1",
+    "grunt-karma": "^1.0.0",
     "gruntify-eslint": "^2.0.0",
     "karma": "^0.13.21",
     "karma-browserify": "^5.0.2",
