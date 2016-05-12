@@ -8,7 +8,7 @@ scheduledIntervalIdentifiers = new IdentifierMap();
 scheduledTimeoutIdentifiers = new IdentifierMap();
 
 function setTimeoutCallback (identifiers, id, expected, data) {
-    var now = performance.now(); // eslint-disable-line no-undef
+    var now = ('performance' in self) ? performance.now() : Date.now(); // eslint-disable-line no-undef
 
     if (now > expected) {
         self.postMessage(data); // eslint-disable-line no-undef
@@ -50,12 +50,13 @@ self.addEventListener('message', function (event) { // eslint-disable-line no-un
             }
         }
     } else { // action === 'set'
-        delay = data.delay;
-        now = performance.now(); // eslint-disable-line no-undef
-        elapsed = now - data.now;
-
-        if (elapsed > 0) {
-            delay -= elapsed;
+        if ('performance' in self) { // eslint-disable-line no-undef
+            now = performance.now(); // eslint-disable-line no-undef
+            elapsed = Math.max(0, now - data.now);
+            delay = data.delay - elapsed;
+        } else {
+            now = Date.now();
+            delay = data.delay;
         }
 
         expected = now + delay;

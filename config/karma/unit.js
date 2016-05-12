@@ -39,7 +39,8 @@ module.exports = function (config) {
             'ChromeCanarySauceLabs',
             'ChromeSauceLabs',
             // 'FirefoxDeveloperSauceLabs',
-            'FirefoxSauceLabs'
+            'FirefoxSauceLabs',
+            'SafariSauceLabs'
         ];
 
         configuration.captureTimeout = 120000;
@@ -66,6 +67,11 @@ module.exports = function (config) {
                 base: 'SauceLabs',
                 browserName: 'firefox',
                 platform: 'OS X 10.11'
+            },
+            SafariSauceLabs: {
+                base: 'SauceLabs',
+                browserName: 'safari',
+                platform: 'OS X 10.11'
             }
         };
 
@@ -75,7 +81,8 @@ module.exports = function (config) {
             'Chrome',
             'ChromeCanary',
             'Firefox',
-            'FirefoxDeveloper'
+            'FirefoxDeveloper',
+            'Safari'
         ];
     }
 
