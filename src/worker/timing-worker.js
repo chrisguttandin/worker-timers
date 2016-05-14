@@ -62,8 +62,8 @@ self.addEventListener('message', function (event) { // eslint-disable-line no-un
         expected = now + delay;
 
         data = {
-            id: id,
-            type: type
+            id,
+            type
         };
 
         if (type === 'interval') {

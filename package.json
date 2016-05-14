@@ -2,10 +2,20 @@
   "author": "Christoph Guttandin",
   "browserify": {
     "transform": [
+      [
+        "babelify",
+        {
+          "plugins": [
+            "transform-es2015-shorthand-properties"
+          ]
+        }
+      ],
       "workerify"
     ]
   },
   "dependencies": {
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
+    "babelify": "^7.3.0",
     "workerify": "^0.3.0"
   },
   "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows",

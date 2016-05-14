@@ -41,7 +41,7 @@ function clearInterval(id) {
 
     worker.postMessage({
         action: 'clear',
-        id: id,
+        id,
         type: 'interval'
     });
 }
@@ -51,7 +51,7 @@ function clearTimeout(id) {
 
     worker.postMessage({
         action: 'clear',
-        id: id,
+        id,
         type: 'timeout'
     });
 }
@@ -63,8 +63,8 @@ function setInterval(func, delay) {
 
             worker.postMessage({
                 action: 'set',
-                delay: delay,
-                id: id,
+                delay,
+                id,
                 now: performance.now(), // eslint-disable-line no-undef
                 type: 'interval'
             });
@@ -73,8 +73,8 @@ function setInterval(func, delay) {
 
     worker.postMessage({
         action: 'set',
-        delay: delay,
-        id: id,
+        delay,
+        id,
         now: performance.now(), // eslint-disable-line no-undef
         type: 'interval'
     });
@@ -87,8 +87,8 @@ function setTimeout(func, delay) {
 
     worker.postMessage({
         action: 'set',
-        delay: delay,
-        id: id,
+        delay,
+        id,
         now: performance.now(), // eslint-disable-line no-undef
         type: 'timeout'
     });
@@ -97,8 +97,8 @@ function setTimeout(func, delay) {
 }
 
 module.exports = {
-    clearInterval: clearInterval,
-    clearTimeout: clearTimeout,
-    setInterval: setInterval,
-    setTimeout: setTimeout
+    clearInterval,
+    clearTimeout,
+    setInterval,
+    setTimeout
 };
