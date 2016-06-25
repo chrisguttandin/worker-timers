@@ -13,6 +13,9 @@
       "workerify"
     ]
   },
+  "bugs": {
+    "url": "https://github.com/chrisguttandin/worker-timers/issues"
+  },
   "dependencies": {
     "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
     "babelify": "^7.3.0",
