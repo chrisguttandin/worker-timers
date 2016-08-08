@@ -1,22 +1,14 @@
-'use strict';
+import { IdentifierMap } from './helper/identifier-map';
+import timingWorker from './worker/timing-worker';
+import webworkify from 'webworkify';
 
-var IdentifierMap = require('./helper/identifier-map.js').IdentifierMap,
-    scheduledIntervalFunctions,
-    scheduledTimeoutFunctions,
-    worker = new Worker('./worker/timing-worker.js'); // eslint-disable-line no-undef
+const worker = webworkify(timingWorker);
 
-scheduledIntervalFunctions = new IdentifierMap();
-scheduledTimeoutFunctions = new IdentifierMap();
+const scheduledIntervalFunctions = new IdentifierMap();
+const scheduledTimeoutFunctions = new IdentifierMap();
 
-worker.addEventListener('message', function (event) {
-    var data,
-        func,
-        id,
-        type;
-
-    data = event.data;
-    id = data.id;
-    type = data.type;
+worker.addEventListener('message', ({ data: { id, type } }) => {
+    var func;
 
     if (type === 'interval') {
         func = scheduledIntervalFunctions.get(id);
@@ -36,7 +28,7 @@ worker.addEventListener('message', function (event) {
     }
 });
 
-function clearInterval(id) {
+export const clearInterval = (id) => {
     scheduledIntervalFunctions.delete(id);
 
     worker.postMessage({
@@ -46,7 +38,7 @@ function clearInterval(id) {
     });
 }
 
-function clearTimeout(id) {
+export const clearTimeout = (id) => {
     scheduledTimeoutFunctions.delete(id);
 
     worker.postMessage({
@@ -56,16 +48,16 @@ function clearTimeout(id) {
     });
 }
 
-function setInterval(func, delay) {
+export const setInterval = (func, delay) => {
     /* eslint-disable indent */
-    var id = scheduledIntervalFunctions.set(function () {
+    var id = scheduledIntervalFunctions.set(() => {
             func();
 
             worker.postMessage({
                 action: 'set',
                 delay,
                 id,
-                now: performance.now(), // eslint-disable-line no-undef
+                now: performance.now(),
                 type: 'interval'
             });
         });
@@ -75,30 +67,23 @@ function setInterval(func, delay) {
         action: 'set',
         delay,
         id,
-        now: performance.now(), // eslint-disable-line no-undef
+        now: performance.now(),
         type: 'interval'
     });
 
     return id;
 }
 
-function setTimeout(func, delay) {
+export const setTimeout = (func, delay) => {
     var id = scheduledTimeoutFunctions.set(func);
 
     worker.postMessage({
         action: 'set',
         delay,
         id,
-        now: performance.now(), // eslint-disable-line no-undef
+        now: performance.now(),
         type: 'timeout'
     });
 
     return id;
 }
-
-module.exports = {
-    clearInterval,
-    clearTimeout,
-    setInterval,
-    setTimeout
-};

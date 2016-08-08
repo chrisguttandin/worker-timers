@@ -28,19 +28,19 @@ npm install worker-timers
 You can then require the workerTimers instance from within your code like this:
 
 ```js
-var workerTimers = require('worker-timers');
+import * as workerTimers from 'worker-timers';
 ```
 
 The usage is exactly the same as with the corresponding functions on the global scope.
 
 ```js
-var intervalId = workerTimers.setInterval(function () {
+var intervalId = workerTimers.setInterval(() => {
     // do something many times
 }, 100);
 
 workerTimers.clearInterval(intervalId);
 
-var timeoutId = workerTimers.setTimeout(function () {
+var timeoutId = workerTimers.setTimeout(() => {
     // do something once
 }, 100);
 

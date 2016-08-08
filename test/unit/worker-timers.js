@@ -1,14 +1,12 @@
-'use strict';
+import * as workerTimers from '../../src/worker-timers';
 
-var workerTimers = require('../../src/worker-timers.js');
+describe('workerTimers', () => {
 
-describe('workerTimers', function () {
+    describe('clearInterval()', () => {
 
-    describe('clearInterval()', function () {
-
-        it('should not call the function after clearing the interval', function (done) {
+        it('should not call the function after clearing the interval', (done) => {
             /* eslint-disable indent */
-            var id = workerTimers.setInterval(function () {
+            var id = workerTimers.setInterval(() => {
                     throw 'this should never be called';
                 }, 100);
             /* eslint-enable indent */
@@ -18,9 +16,9 @@ describe('workerTimers', function () {
             setTimeout(done, 200); // wait 200ms to be sure the function never gets called
         });
 
-        it('should not call the function anymore after clearing the interval after the first callback', function (done) {
+        it('should not call the function anymore after clearing the interval after the first callback', (done) => {
             /* eslint-disable indent */
-            var id = workerTimers.setInterval(function () {
+            var id = workerTimers.setInterval(() => {
                     if (id === null) {
                         throw 'this should never be called';
                     }
@@ -35,11 +33,11 @@ describe('workerTimers', function () {
 
     });
 
-    describe('clearTimeout()', function () {
+    describe('clearTimeout()', () => {
 
-        it('should not call the function after clearing the timeout', function (done) {
+        it('should not call the function after clearing the timeout', (done) => {
             /* eslint-disable indent */
-            var id = workerTimers.setTimeout(function () {
+            var id = workerTimers.setTimeout(() => {
                     throw 'this should never be called';
                 }, 100);
             /* eslint-enable indent */
@@ -51,29 +49,29 @@ describe('workerTimers', function () {
 
     });
 
-    describe('setInterval()', function () {
+    describe('setInterval()', () => {
 
         var id;
 
-        afterEach(function () {
+        afterEach(() => {
             workerTimers.clearTimeout(id);
         });
 
-        it('should return a numeric id', function () {
-            id = workerTimers.setInterval(function () {}, 0);
+        it('should return a numeric id', () => {
+            id = workerTimers.setInterval(() => {}, 0);
 
             expect(id).to.be.a('number');
         });
 
-        it('should constantly call a function with the given delay', function (done) {
-            var before = window.performance.now(), // eslint-disable-line no-undef
+        it('should constantly call a function with the given delay', (done) => {
+            var before = performance.now(),
                 calls = 0;
 
             function func() {
                 var elapsed,
                     now;
 
-                now = window.performance.now(); // eslint-disable-line no-undef
+                now = performance.now();
                 elapsed = now - before;
 
                 expect(elapsed).to.be.at.least(100);
@@ -91,25 +89,25 @@ describe('workerTimers', function () {
 
     });
 
-    describe('setTimeout()', function () {
+    describe('setTimeout()', () => {
 
         var id;
 
-        afterEach(function () {
+        afterEach(() => {
             workerTimers.clearInterval(id);
         });
 
-        it('should return a numeric id', function () {
-            id = workerTimers.setTimeout(function () {}, 0);
+        it('should return a numeric id', () => {
+            id = workerTimers.setTimeout(() => {}, 0);
 
             expect(id).to.be.a('number');
         });
 
-        it('should postpone a function for the given delay', function (done) {
-            var before = window.performance.now(); // eslint-disable-line no-undef
+        it('should postpone a function for the given delay', (done) => {
+            var before = performance.now();
 
             function func() {
-                var elapsed = window.performance.now() - before; // eslint-disable-line no-undef
+                var elapsed = performance.now() - before;
 
                 expect(elapsed).to.be.at.least(100);
 

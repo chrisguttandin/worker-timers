@@ -1,75 +1,62 @@
-'use strict';
+import { IdentifierMap } from './../helper/identifier-map';
 
-var IdentifierMap = require('./../helper/identifier-map.js').IdentifierMap,
-    scheduledIntervalIdentifiers,
-    scheduledTimeoutIdentifiers;
+const scheduledIntervalIdentifiers = new IdentifierMap();
+const scheduledTimeoutIdentifiers = new IdentifierMap();
 
-scheduledIntervalIdentifiers = new IdentifierMap();
-scheduledTimeoutIdentifiers = new IdentifierMap();
-
-function setTimeoutCallback (identifiers, id, expected, data) {
-    var now = ('performance' in self) ? performance.now() : Date.now(); // eslint-disable-line no-undef
+const setTimeoutCallback = (identifiers, id, expected, data) => {
+    var now = ('performance' in self) ? performance.now() : Date.now();
 
     if (now > expected) {
-        self.postMessage(data); // eslint-disable-line no-undef
+        self.postMessage(data);
     } else {
         identifiers.set(id, setTimeout(setTimeoutCallback, (expected - now), identifiers, id, expected, data));
     }
-}
+};
 
-self.addEventListener('message', function (event) { // eslint-disable-line no-undef
-    var action,
-        data,
-        delay,
-        elapsed,
-        expected,
-        id,
-        identifier,
-        now,
-        type;
+export default (self) => {
+    self.addEventListener('message', ({ data: { action, delay, id, now: nowInMainThread, type } }) => {
+        if (action === 'clear') {
+            let identifier;
 
-    data = event.data;
-    action = data.action;
-    id = data.id;
-    type = data.type;
+            if (type === 'interval') {
+                identifier = scheduledIntervalIdentifiers.get(id);
 
-    if (action === 'clear') {
-        if (type === 'interval') {
-            identifier = scheduledIntervalIdentifiers.get(id);
+                if (identifier !== undefined) {
+                    clearTimeout(identifier);
+                    scheduledIntervalIdentifiers.delete(id);
+                }
+            } else { // type === 'timeout'
+                identifier = scheduledTimeoutIdentifiers.get(id);
 
-            if (identifier !== undefined) {
-                clearTimeout(identifier);
-                scheduledIntervalIdentifiers.delete(id);
+                if (identifier !== undefined) {
+                    clearTimeout(identifier);
+                    scheduledTimeoutIdentifiers.delete(id);
+                }
             }
-        } else { // type === 'timeout'
-            identifier = scheduledTimeoutIdentifiers.get(id);
+        } else { // action === 'set'
+            let expected,
+                now;
 
-            if (identifier !== undefined) {
-                clearTimeout(identifier);
-                scheduledTimeoutIdentifiers.delete(id);
+            if ('performance' in self) {
+                let elapsed,
+                    nowInWorker;
+
+                nowInWorker = performance.now();
+                elapsed = Math.max(0, nowInWorker - nowInMainThread);
+
+                delay -= elapsed;
+                now = nowInWorker;
+            } else {
+                now = Date.now();
+            }
+
+            expected = now + delay;
+
+            if (type === 'interval') {
+                scheduledIntervalIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledIntervalIdentifiers, id, expected, { id, type }));
+            } else { // type === 'timeout'
+                scheduledTimeoutIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledTimeoutIdentifiers, id, expected, { id, type }));
             }
         }
-    } else { // action === 'set'
-        if ('performance' in self) { // eslint-disable-line no-undef
-            now = performance.now(); // eslint-disable-line no-undef
-            elapsed = Math.max(0, now - data.now);
-            delay = data.delay - elapsed;
-        } else {
-            now = Date.now();
-            delay = data.delay;
-        }
-
-        expected = now + delay;
-
-        data = {
-            id,
-            type
-        };
-
-        if (type === 'interval') {
-            scheduledIntervalIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledIntervalIdentifiers, id, expected, data));
-        } else { // type === 'timeout'
-            scheduledTimeoutIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledTimeoutIdentifiers, id, expected, data));
-        }
-    }
-});
+    });
+};
