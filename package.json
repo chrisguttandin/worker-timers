@@ -41,7 +41,7 @@
     "grunt-githooks": "^0.6.0",
     "grunt-karma": "^1.0.0",
     "gruntify-eslint": "^3.0.0",
-    "karma": "^1.0.0",
+    "karma": "^1.2.0",
     "karma-browserify": "^5.0.2",
     "karma-chrome-launcher": "^1.0.1",
     "karma-firefox-launcher": "^1.0.0",
