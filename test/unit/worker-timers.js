@@ -13,7 +13,8 @@ describe('workerTimers', () => {
 
             workerTimers.clearInterval(id);
 
-            setTimeout(done, 200); // wait 200ms to be sure the function never gets called
+            // Wait 200ms to be sure the function never gets called.
+            setTimeout(done, 200);
         });
 
         it('should not call the function anymore after clearing the interval after the first callback', (done) => {
@@ -28,7 +29,8 @@ describe('workerTimers', () => {
                 }, 50);
             /* eslint-enable indent */
 
-            setTimeout(done, 200); // wait 200ms to be sure the function gets not called anymore
+            // Wait 200ms to be sure the function gets not called anymore.
+            setTimeout(done, 200);
         });
 
     });
@@ -44,7 +46,8 @@ describe('workerTimers', () => {
 
             workerTimers.clearTimeout(id);
 
-            setTimeout(done, 200); // wait 200ms to be sure the function never gets called
+            // Wait 200ms to be sure the function never gets called.
+            setTimeout(done, 200);
         });
 
     });
@@ -76,7 +79,8 @@ describe('workerTimers', () => {
 
                 expect(elapsed).to.be.at.least(100);
 
-                if (calls > 4) { // test five calls
+                // Test five calls.
+                if (calls > 4) {
                     done();
                 }
 

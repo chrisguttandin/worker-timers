@@ -16,7 +16,9 @@ worker.addEventListener('message', ({ data: { id, type } }) => {
         if (func) {
             func();
         }
-    } else { // type === 'timeout'
+
+    // type === 'timeout'
+    } else {
         func = scheduledTimeoutFunctions.get(id);
 
         if (func) {
