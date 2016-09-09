@@ -25,7 +25,9 @@ export default (self) => {
                     clearTimeout(identifier);
                     scheduledIntervalIdentifiers.delete(id);
                 }
-            } else { // type === 'timeout'
+
+            // type === 'timeout'
+            } else {
                 identifier = scheduledTimeoutIdentifiers.get(id);
 
                 if (identifier !== undefined) {
@@ -33,7 +35,9 @@ export default (self) => {
                     scheduledTimeoutIdentifiers.delete(id);
                 }
             }
-        } else { // action === 'set'
+
+        // action === 'set'
+        } else {
             let expected,
                 now;
 
@@ -54,7 +58,9 @@ export default (self) => {
 
             if (type === 'interval') {
                 scheduledIntervalIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledIntervalIdentifiers, id, expected, { id, type }));
-            } else { // type === 'timeout'
+
+            // type === 'timeout'
+            } else {
                 scheduledTimeoutIdentifiers.set(id, setTimeout(setTimeoutCallback, delay, scheduledTimeoutIdentifiers, id, expected, { id, type }));
             }
         }
