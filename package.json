@@ -32,7 +32,7 @@
   },
   "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows",
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.0.0",
     "browserify": "^13.0.0",
     "chai": "^3.5.0",
     "eslint-config-holy-grail": "^9.0.0",
