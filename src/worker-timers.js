@@ -38,7 +38,7 @@ export const clearInterval = (id) => {
         id,
         type: 'interval'
     });
-}
+};
 
 export const clearTimeout = (id) => {
     scheduledTimeoutFunctions.delete(id);
@@ -48,7 +48,7 @@ export const clearTimeout = (id) => {
         id,
         type: 'timeout'
     });
-}
+};
 
 export const setInterval = (func, delay) => {
     /* eslint-disable indent */
@@ -74,7 +74,7 @@ export const setInterval = (func, delay) => {
     });
 
     return id;
-}
+};
 
 export const setTimeout = (func, delay) => {
     var id = scheduledTimeoutFunctions.set(func);
@@ -88,4 +88,4 @@ export const setTimeout = (func, delay) => {
     });
 
     return id;
-}
+};
