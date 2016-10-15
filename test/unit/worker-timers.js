@@ -70,7 +70,7 @@ describe('workerTimers', () => {
             var before = performance.now(),
                 calls = 0;
 
-            function func() {
+            function func () {
                 var elapsed,
                     now;
 
@@ -110,7 +110,7 @@ describe('workerTimers', () => {
         it('should postpone a function for the given delay', (done) => {
             var before = performance.now();
 
-            function func() {
+            function func () {
                 var elapsed = performance.now() - before;
 
                 expect(elapsed).to.be.at.least(100);
