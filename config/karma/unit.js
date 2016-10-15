@@ -16,7 +16,7 @@ module.exports = function (config) {
                     included: false,
                     pattern: '../../src/**/*.js',
                     served: false,
-                    watched: true,
+                    watched: true
                 },
                 '../../test/unit/**/*.js'
             ],
