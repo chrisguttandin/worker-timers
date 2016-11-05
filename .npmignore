@@ -1,0 +1,5 @@
+*.DS_Store
+config/
+node_modules/
+test/
+Gruntfile.js

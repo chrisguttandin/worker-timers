@@ -1,6 +1,6 @@
-import * as workerTimers from '../../src/worker-timers';
+import * as workerTimers from '../../src/module';
 
-describe('workerTimers', () => {
+describe('module', () => {
 
     describe('clearInterval()', () => {
 
