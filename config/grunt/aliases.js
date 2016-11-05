@@ -1,6 +1,7 @@
 module.exports = {
     build: [
         'clean:build',
+        'replace:worker',
         'sh:build',
         'uglify'
     ],

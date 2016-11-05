@@ -60,7 +60,6 @@
     "url": "https://github.com/chrisguttandin/worker-timers.git"
   },
   "scripts": {
-    "install": "grunt replace",
     "precommit": "grunt lint",
     "prepublish": "grunt build",
     "test": "grunt lint && grunt test"
