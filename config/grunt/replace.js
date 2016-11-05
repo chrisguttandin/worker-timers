@@ -9,9 +9,9 @@ module.exports = {
         },
         options: {
             patterns: [ {
-                match: /export\sconst\sworker:\sstring\s=\s'(.*)';/g,
+                match: /export\sconst\sworker\s=\s'(.*)';/g,
                 replacement: () => {
-                    return `export const worker: string = '${ readFileSync(require.resolve('worker-timers-worker/build/es5/bundle.min')) }';`;
+                    return `export const worker = '${ readFileSync(require.resolve('worker-timers-worker/build/es5/bundle.min')) }';`;
                 }
             } ]
         }
