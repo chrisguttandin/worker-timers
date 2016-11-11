@@ -5,6 +5,12 @@ const blob: Blob = new Blob([ worker ], { type: 'application/javascript' });
 
 const url: string = URL.createObjectURL(blob);
 
-const { clearInterval, clearTimeout, setInterval, setTimeout } = load(url);
+const workerTimers = load(url);
 
-export { clearInterval, clearTimeout, setInterval, setTimeout };
+export const clearInterval = workerTimers.clearInterval;
+
+export const clearTimeout = workerTimers.clearTimeout;
+
+export const setInterval = workerTimers.setInterval;
+
+export const setTimeout = workerTimers.setTimeout;
