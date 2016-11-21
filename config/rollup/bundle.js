@@ -4,7 +4,7 @@ export default {
     dest: 'build/es5/bundle.js',
     entry: 'build/es2015/module.js',
     format: 'umd',
-    moduleName: 'workerTimersWorker',
+    moduleName: 'workerTimers',
     plugins: [
         babel({
             exclude: 'node_modules/**',
