@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "worker-timers-broker": "^0.0.1",
-    "worker-timers-worker": "^0.0.4"
+    "worker-timers-worker": "^1.0.0"
   },
   "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows",
   "devDependencies": {
