@@ -3,12 +3,6 @@ module.exports = function (config) {
     config.set({
 
         files: [
-            {
-                included: false,
-                pattern: '../../src/**',
-                served: false,
-                watched: true
-            },
             '../../test/unit/**/*.js'
         ],
 
