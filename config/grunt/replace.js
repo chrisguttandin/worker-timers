@@ -11,7 +11,7 @@ module.exports = {
             patterns: [ {
                 match: /export\sconst\sworker\s=\s`(.*)`;/g,
                 replacement: () => {
-                    return `export const worker = \`${ readFileSync(require.resolve('midi-json-parser-worker/build/es5/worker.min')) }\`;`;
+                    return `export const worker = \`${ readFileSync(require.resolve('worker-timers-worker/build/es5/worker.min')) }\`;`;
                 }
             } ]
         }
