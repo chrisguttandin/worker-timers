@@ -5,11 +5,9 @@ describe('module', () => {
     describe('clearInterval()', () => {
 
         it('should not call the function after clearing the interval', (done) => {
-            /* eslint-disable indent */
-            var id = workerTimers.setInterval(() => {
-                    throw 'this should never be called';
-                }, 100);
-            /* eslint-enable indent */
+            const id = workerTimers.setInterval(() => {
+                throw 'this should never be called';
+            }, 100);
 
             workerTimers.clearInterval(id);
 
@@ -18,16 +16,14 @@ describe('module', () => {
         });
 
         it('should not call the function anymore after clearing the interval after the first callback', (done) => {
-            /* eslint-disable indent */
-            var id = workerTimers.setInterval(() => {
-                    if (id === null) {
-                        throw 'this should never be called';
-                    }
+            let id = workerTimers.setInterval(() => {
+                if (id === null) {
+                    throw 'this should never be called';
+                }
 
-                    workerTimers.clearInterval(id);
-                    id = null;
-                }, 50);
-            /* eslint-enable indent */
+                workerTimers.clearInterval(id);
+                id = null;
+            }, 50);
 
             // Wait 200ms to be sure the function gets not called anymore.
             setTimeout(done, 200);
@@ -38,11 +34,9 @@ describe('module', () => {
     describe('clearTimeout()', () => {
 
         it('should not call the function after clearing the timeout', (done) => {
-            /* eslint-disable indent */
-            var id = workerTimers.setTimeout(() => {
-                    throw 'this should never be called';
-                }, 100);
-            /* eslint-enable indent */
+            const id = workerTimers.setTimeout(() => {
+                throw 'this should never be called';
+            }, 100);
 
             workerTimers.clearTimeout(id);
 
@@ -54,7 +48,7 @@ describe('module', () => {
 
     describe('setInterval()', () => {
 
-        var id;
+        let id;
 
         afterEach(() => {
             workerTimers.clearTimeout(id);
@@ -67,15 +61,12 @@ describe('module', () => {
         });
 
         it('should constantly call a function with the given delay', (done) => {
-            var before = performance.now(),
-                calls = 0;
+            let before = performance.now();
+            let calls = 0;
 
             function func () {
-                var elapsed,
-                    now;
-
-                now = performance.now();
-                elapsed = now - before;
+                const now = performance.now();
+                const elapsed = now - before;
 
                 expect(elapsed).to.be.at.least(100);
 
@@ -95,7 +86,7 @@ describe('module', () => {
 
     describe('setTimeout()', () => {
 
-        var id;
+        let id;
 
         afterEach(() => {
             workerTimers.clearInterval(id);
@@ -108,10 +99,10 @@ describe('module', () => {
         });
 
         it('should postpone a function for the given delay', (done) => {
-            var before = performance.now();
+            const before = performance.now();
 
             function func () {
-                var elapsed = performance.now() - before;
+                const elapsed = performance.now() - before;
 
                 expect(elapsed).to.be.at.least(100);
 
