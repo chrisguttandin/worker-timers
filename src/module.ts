@@ -1,5 +1,5 @@
-import { worker } from './worker/worker';
 import { load } from 'worker-timers-broker';
+import { worker } from './worker/worker';
 
 const blob: Blob = new Blob([ worker ], { type: 'application/javascript' });
 
