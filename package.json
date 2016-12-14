@@ -21,7 +21,7 @@
     "grunt-sh": "^0.1.4",
     "grunt-tslint": "^4.0.0",
     "gruntify-eslint": "^3.0.0",
-    "husky": "^0.11.9",
+    "husky": "^0.12.0",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
