@@ -6,6 +6,7 @@ module.exports = {
         'uglify'
     ],
     continuous: [
+        'build',
         'karma:continuous'
     ],
     lint: [
@@ -13,6 +14,7 @@ module.exports = {
         'tslint'
     ],
     test: [
+        'build',
         'karma:test'
     ]
 };
