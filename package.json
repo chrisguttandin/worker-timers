@@ -4,8 +4,8 @@
     "url": "https://github.com/chrisguttandin/worker-timers/issues"
   },
   "dependencies": {
-    "worker-timers-broker": "^1.0.0",
-    "worker-timers-worker": "^1.0.0"
+    "worker-timers-broker": "^2.0.0",
+    "worker-timers-worker": "^2.0.0"
   },
   "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows",
   "devDependencies": {
