@@ -17,8 +17,6 @@ export default {
                 ]
             ]
         }),
-        nodeResolve({
-            jsnext: true
-        })
+        nodeResolve()
     ]
 };

@@ -48,7 +48,6 @@
     "src/"
   ],
   "homepage": "https://github.com/chrisguttandin/worker-timers",
-  "jsnext:main": "build/es2015/module.js",
   "keywords": [
     "clearInterval",
     "clearTimeout",
@@ -60,6 +59,7 @@
   ],
   "license": "MIT",
   "main": "build/es5/bundle.js",
+  "module": "build/es2015/module.js",
   "name": "worker-timers",
   "repository": {
     "type": "git",
