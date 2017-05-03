@@ -2,7 +2,10 @@ module.exports = {
     build: [
         'clean:build',
         'replace:worker',
-        'sh:build',
+        'sh:build-es2015',
+        'sh:build-es5',
+        'sh:build-esm',
+        'sh:build-script',
         'uglify'
     ],
     continuous: [

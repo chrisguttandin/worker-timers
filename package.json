@@ -45,6 +45,7 @@
   "files": [
     "build/es5/",
     "build/es2015/",
+    "build/esm/",
     "src/"
   ],
   "homepage": "https://github.com/chrisguttandin/worker-timers",
@@ -59,7 +60,7 @@
   ],
   "license": "MIT",
   "main": "build/es5/bundle.js",
-  "module": "build/es2015/module.js",
+  "module": "build/esm/module.js",
   "name": "worker-timers",
   "repository": {
     "type": "git",
