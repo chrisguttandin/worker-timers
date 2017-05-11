@@ -51,7 +51,7 @@ describe('module', () => {
         let id;
 
         afterEach(() => {
-            workerTimers.clearTimeout(id);
+            workerTimers.clearInterval(id);
         });
 
         it('should return a numeric id', () => {
@@ -89,7 +89,7 @@ describe('module', () => {
         let id;
 
         afterEach(() => {
-            workerTimers.clearInterval(id);
+            workerTimers.clearTimeout(id);
         });
 
         it('should return a numeric id', () => {
