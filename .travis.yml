@@ -1,7 +1,11 @@
+after_script: greenkeeper-lockfile-upload
+before_install: npm install npm@latest --global
+before_script: greenkeeper-lockfile-update
 env:
   global:
-    - secure: iXb9ShthmUKkdwIVWHLjM+1xokN65QcrdVDTm6r/pDvB6bcPGM2FVJqu0fXHOyUxroK/FeaGnYP2VG0Z3wLyjRXK6VXr80AuPFSkwhTpU+ZxEccGdPaIZ/SpgvRmwQI4O7TcJByfxcTNxk8zUy2EoJYlY1C5/KATwqW28fRoSI0=
-    - secure: Guzs47lVTBP+9///GzwEBODN9TUI2HkI5PjMHkyQ3xgwk5QJhN3LwfxvxFp0OuRjktxQJvAOjXjGxeqeV8Gi7y86ArxrG9UXxf1a+2j8lkvOxzDMWOv1d+gPEEsU62G24BoEq3DvSR4RXnK3v6pr2u9Pcw+obgRqxjt3QUGg/Zk=
+  - secure: iXb9ShthmUKkdwIVWHLjM+1xokN65QcrdVDTm6r/pDvB6bcPGM2FVJqu0fXHOyUxroK/FeaGnYP2VG0Z3wLyjRXK6VXr80AuPFSkwhTpU+ZxEccGdPaIZ/SpgvRmwQI4O7TcJByfxcTNxk8zUy2EoJYlY1C5/KATwqW28fRoSI0=
+  - secure: Guzs47lVTBP+9///GzwEBODN9TUI2HkI5PjMHkyQ3xgwk5QJhN3LwfxvxFp0OuRjktxQJvAOjXjGxeqeV8Gi7y86ArxrG9UXxf1a+2j8lkvOxzDMWOv1d+gPEEsU62G24BoEq3DvSR4RXnK3v6pr2u9Pcw+obgRqxjt3QUGg/Zk=
+  - secure: A71UF9A7zadEc54bu2gjqzJ4MWT+w5nJALXAfFgDgbTIiMhiOhOQmZS5YReypwgtFbhy1fUZry+/cXfnd1dsZg9EIEzIKCO/yE/ihQCJRYgOtDon5pjAZ3BaTCWQSPXxks2Txz9Sv72DjK8+12EtWxB5iHngnumvsXM32uEj+48=
 language: node_js
-node_js: 7
+node_js: 8
 sudo: false
