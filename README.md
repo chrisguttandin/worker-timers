@@ -1,5 +1,7 @@
 # worker-timers
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/chrisguttandin/worker-timers.svg)](https://greenkeeper.io/)
+
 **A replacement for setInterval() and setTimeout() which works in unfocused windows.**
 
 [![tests](https://img.shields.io/travis/chrisguttandin/worker-timers/master.svg?style=flat-square)](https://travis-ci.org/chrisguttandin/worker-timers)
