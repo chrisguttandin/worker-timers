@@ -6,7 +6,7 @@ describe('module', () => {
 
         it('should not call the function after clearing the interval', (done) => {
             const id = workerTimers.setInterval(() => {
-                throw new Error('this should never be called');
+                done(new Error('This should never be called.'));
             }, 100);
 
             workerTimers.clearInterval(id);
@@ -18,7 +18,7 @@ describe('module', () => {
         it('should not call the function anymore after clearing the interval after the first callback', (done) => {
             let id = workerTimers.setInterval(() => {
                 if (id === null) {
-                    throw new Error('this should never be called');
+                    done(new Error('This should never be called.'));
                 }
 
                 workerTimers.clearInterval(id);
@@ -35,7 +35,7 @@ describe('module', () => {
 
         it('should not call the function after clearing the timeout', (done) => {
             const id = workerTimers.setTimeout(() => {
-                throw new Error('this should never be called');
+                done(new Error('This should never be called.'));
             }, 100);
 
             workerTimers.clearTimeout(id);
