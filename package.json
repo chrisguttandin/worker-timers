@@ -19,7 +19,7 @@
     "grunt-contrib-uglify": "^3.0.0",
     "grunt-karma": "^2.0.0",
     "grunt-replace": "^1.0.1",
-    "grunt-sh": "^0.1.4",
+    "grunt-sh": "^0.2.0",
     "grunt-tslint": "^5.0.0",
     "gruntify-eslint": "^4.0.0",
     "husky": "^0.14.3",
