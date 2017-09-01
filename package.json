@@ -4,6 +4,7 @@
     "url": "https://github.com/chrisguttandin/worker-timers/issues"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "worker-timers-broker": "^4.0.2",
     "worker-timers-worker": "^4.0.0"
   },
