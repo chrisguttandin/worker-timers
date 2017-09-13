@@ -12,7 +12,7 @@ module.exports = {
                 match: /export\sconst\sworker\s=\s`(.*)`;/g,
                 replacement: () => {
                     const workerPath = require.resolve('worker-timers-worker/build/es5/worker.min');
-                    const workerString = readFileSync(workerPath, { encoding: 'utf8' }).replace(/\\/g, '\\\\');
+                    const workerString = readFileSync(workerPath, { encoding: 'utf8' }).replace(/\\/g, '\\\\');
 
                     return `export const worker = \`${ workerString }\`;`;
                 }
