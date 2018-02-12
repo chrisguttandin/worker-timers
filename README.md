@@ -46,3 +46,17 @@ var timeoutId = workerTimers.setTimeout(() => {
 
 workerTimers.clearTimeout(timeoutId);
 ```
+
+## Server-Side Rendering
+
+This package is intended to be used in the browser and requires the browser to have [support for
+Web Workers](https://caniuse.com/#feat=webworkers). It does not contain any fallback which would it
+allow to run in another environment like Node.js which doesn't know about Web Workers. This is to
+prevent this package from silently failing in an unsupported browser. But it also means that it
+needs to be replaced when used in a web project which also supports server-side rendering. That
+should be easy, at least in theory, because each function has the exact same signature as its
+corresponding builtin function. But the configuration of a real-life project can of course be
+tricky. For a concrete example, please have a look at the
+[worker-timers-ssr-example](https://github.com/newyork-anthonyng/worker-timers-ssr-example)
+provided by [@newyork-anthonyng](https://github.com/newyork-anthonyng). It shows the usage inside
+of a server-side rendered React app.
