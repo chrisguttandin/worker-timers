@@ -50,8 +50,8 @@ workerTimers.clearTimeout(timeoutId);
 ## Server-Side Rendering
 
 This package is intended to be used in the browser and requires the browser to have [support for
-Web Workers](https://caniuse.com/#feat=webworkers). It does not contain any fallback which would it
-allow to run in another environment like Node.js which doesn't know about Web Workers. This is to
+Web Workers](https://caniuse.com/#feat=webworkers). It does not contain any fallback which would
+allow it to run in another environment like Node.js which doesn't know about Web Workers. This is to
 prevent this package from silently failing in an unsupported browser. But it also means that it
 needs to be replaced when used in a web project which also supports server-side rendering. That
 should be easy, at least in theory, because each function has the exact same signature as its
