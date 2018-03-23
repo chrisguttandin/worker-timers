@@ -66,6 +66,6 @@ of a server-side rendered React app.
 If WorkerTimers are used inside of an Angular App and Zones are used to detect changes, the
 behavior of WorkerTimers can be confusing. Angular is using a Zone which is patching the native
 setInterval() and setTimeout() functions to get notified about the execution of their callback
-functions. Angular (more specifically zone.js) is not aware of WorkerTimers and doesn't patch them.
-Therefore Angular needs to be notfied manually about any state changes that occur inside of a
+functions. But Angular (more specifically zone.js) is not aware of WorkerTimers and doesn't patch
+them. Therefore Angular needs to be notified manually about state changes that occur inside of a
 callback function which was scheduled with the help of WorkerTimers.
