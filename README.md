@@ -31,7 +31,9 @@ You can then require the workerTimers instance from within your code like this:
 import * as workerTimers from 'worker-timers';
 ```
 
-The usage is exactly the same as with the corresponding functions on the global scope.
+The usage is exactly the same (despite of the [error handling](#error-handling) and the
+[differentiation between intervals and timeouts](#differentiation-between-intervals-and-timeouts))
+as with the corresponding functions on the global scope.
 
 ```js
 var intervalId = workerTimers.setInterval(() => {
@@ -45,6 +47,40 @@ var timeoutId = workerTimers.setTimeout(() => {
 }, 100);
 
 workerTimers.clearTimeout(timeoutId);
+```
+
+## Error Handling
+
+The native WindowTimers are very forgiving. Calling `clearInterval()` or `clearTimeout()` without
+a value or with an id which doesn't exist will just get ignored. In contrast to that workerTimers
+will throw an error when doing so.
+
+```js
+// This will just return undefined.
+window.clearTimeout('not-an-timeout-id');
+
+// This will throw an error.
+workerTimers.clearTimeout('not-an-timeout-id');
+```
+
+## Differentiation between Intervals and Timeouts
+
+Another difference between workerTimers and WindowTimers is that this package maintains two
+separate lists to store the ids of intervals and timeouts internally. WindowTimers do only have one
+list which allows intervals to be cancelled by calling `clearTimeout()` and the other way round.
+This is not possible with workerTimers. As mentioned above workerTimers will throw an error when
+provided with an unknown id.
+
+```js
+const periodicWork = () => { };
+
+// This will stop the interval.
+const windowId = window.setInterval(periodicWork, 100);
+window.clearTimeout(windowId);
+
+// This will throw an error.
+const workerId = workerTimers.setInterval(periodicWork, 100);
+workerTimers.clearTimeout(workerId);
 ```
 
 ## Server-Side Rendering
