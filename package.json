@@ -8,6 +8,12 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "contributors": [
+    {
+      "email": "a-anng@expedia.com",
+      "name": "Anthony Ng"
+    }
+  ],
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "tslib": "^1.9.2",
