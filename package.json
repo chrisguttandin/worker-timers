@@ -72,13 +72,13 @@
   ],
   "homepage": "https://github.com/chrisguttandin/worker-timers",
   "keywords": [
-    "Web Workers",
-    "WindowTimers",
     "clearInterval",
     "clearTimeout",
     "interval",
     "setInterval",
-    "setTimeout"
+    "setTimeout",
+    "Web Workers",
+    "WindowTimers"
   ],
   "license": "MIT",
   "main": "build/es5/bundle.js",
