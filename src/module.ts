@@ -14,3 +14,5 @@ export const clearTimeout = workerTimers.clearTimeout;
 export const setInterval = workerTimers.setInterval;
 
 export const setTimeout = workerTimers.setTimeout;
+
+URL.revokeObjectURL(url);
