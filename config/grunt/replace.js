@@ -1,5 +1,3 @@
-const readFileSync = require('fs').readFileSync;
-
 module.exports = {
     worker: {
         files: {
@@ -9,12 +7,9 @@ module.exports = {
         },
         options: {
             patterns: [ {
-                match: /export\sconst\sworker\s=\s`(.*)`;/g,
-                replacement: () => {
-                    const workerPath = require.resolve('worker-timers-worker/build/es5/worker.min');
-                    const workerString = readFileSync(workerPath, { encoding: 'utf8' }).replace(/\\/g, '\\\\');
-
-                    return `export const worker = \`${ workerString }\`;`;
+                match: /(.*)/s,
+                replacement: (match) => {
+                    return `// tslint:disable-next-line:max-line-length\nexport const worker = \`${ match }\`;\n`;
                 }
             } ]
         }
