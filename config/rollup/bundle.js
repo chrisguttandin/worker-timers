@@ -5,7 +5,6 @@ import replace from 'rollup-plugin-replace';
 import webpack from 'webpack';
 import webpackConfig from '../webpack/config.js';
 
-const promiseResolveFunctions = [ ];
 const workerFile = readFileSync('src/worker/worker.ts', 'utf-8');
 const result = /export\sconst\sworker\s=\s`(.*)`;/g.exec(workerFile);
 
@@ -18,20 +17,6 @@ const memoryFileSystem = new MemoryFileSystem();
 
 let transpiledWorkerString = null;
 
-const compiler = webpack(webpackConfig);
-
-compiler.outputFileSystem = memoryFileSystem;
-compiler.run((err, stats) => {
-    if (stats.hasErrors() || stats.hasWarnings()) {
-        throw new Error(stats.toString({ errorDetails: true, warnings: true }));
-    }
-
-    transpiledWorkerString = memoryFileSystem.readFileSync('/worker.js', 'utf-8');
-
-    promiseResolveFunctions
-        .forEach((promiseResolveFunction) => promiseResolveFunction());
-});
-
 export default {
     input: 'build/es2015/module.js',
     output: {
@@ -41,19 +26,34 @@ export default {
     },
     plugins: [
         {
-            transform (source) {
-                if (transpiledWorkerString === null) {
-                    return new Promise((resolve) => promiseResolveFunctions.push(() => resolve(source)));
-                }
+            buildStart () {
+                return new Promise((resolve) => {
+                    const compiler = webpack(webpackConfig);
 
-                return source;
+                    compiler.outputFileSystem = memoryFileSystem;
+                    compiler.run((err, stats) => {
+                        if (stats.hasErrors() || stats.hasWarnings()) {
+                            throw new Error(stats.toString({ errorDetails: true, warnings: true }));
+                        }
+
+                        transpiledWorkerString = memoryFileSystem.readFileSync('/worker.js', 'utf-8');
+
+                        resolve();
+                    });
+                });
             }
         },
         replace({
             delimiters: [ '`', '`' ],
             include: 'build/es2015/worker/worker.js',
             values: {
-                [ workerString ]: () => `\`${ transpiledWorkerString }\``
+                [ workerString ]: () => {
+                    if (transpiledWorkerString === null) {
+                        throw new Error('The worker should be transpiled by now.');
+                    }
+
+                    return `\`${ transpiledWorkerString }\``;
+                }
             }
         }),
         babel({

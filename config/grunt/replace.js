@@ -9,7 +9,11 @@ module.exports = {
             patterns: [ {
                 match: /(.*)/s,
                 replacement: (match) => {
-                    return `// tslint:disable-next-line:max-line-length\nexport const worker = \`${ match }\`;\n`;
+                    const workerString = match
+                        .replace(/\\/g, '\\\\')
+                        .replace(/\${/g, '\\${');
+
+                    return `// tslint:disable-next-line:max-line-length\nexport const worker = \`${ workerString }\`;\n`;
                 }
             } ]
         }

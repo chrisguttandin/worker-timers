@@ -2,12 +2,12 @@ import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 export default {
     entry: {
-        worker: './node_modules/worker-timers-worker/build/es2015/module.js'
+        worker: './config/webpack/worker.js'
     },
     mode: 'production',
     module: {
         rules: [ {
-            exclude: /node_modules\/(?!worker-timers-worker)/,
+            exclude: /node_modules/,
             test: /\.js$/,
             use: {
                 loader: 'babel-loader',
@@ -37,6 +37,9 @@ export default {
     output: {
         filename: '[name].js',
         path: '/'
+    },
+    resolve: {
+        mainFields: [ 'browser', 'main' ]
     },
     target: 'webworker'
 };

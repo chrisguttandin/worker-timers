@@ -44,6 +44,11 @@ module.exports = {
         optimization: {
             minimizer: [
                 new TerserPlugin({
+                    extractComments: {
+                        banner: false,
+                        condition: /^\**!|@preserve|@license|@cc_on/,
+                        filename: '3rdpartylicenses.txt'
+                    },
                     test: /\.ts$/
                 })
             ]
