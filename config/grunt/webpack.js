@@ -9,7 +9,6 @@ module.exports = {
         mode: 'production',
         module: {
             rules: [ {
-                exclude: /node_modules\/(?!worker-timers-worker)/,
                 test: /\.js$/,
                 use: {
                     loader: 'babel-loader',
