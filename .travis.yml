@@ -9,5 +9,5 @@ env:
     - secure: A71UF9A7zadEc54bu2gjqzJ4MWT+w5nJALXAfFgDgbTIiMhiOhOQmZS5YReypwgtFbhy1fUZry+/cXfnd1dsZg9EIEzIKCO/yE/ihQCJRYgOtDon5pjAZ3BaTCWQSPXxks2Txz9Sv72DjK8+12EtWxB5iHngnumvsXM32uEj+48=
 install: npm ci || (rm -rf node_modules && npm install)
 language: node_js
-node_js: 10
+node_js: 11
 sudo: false
