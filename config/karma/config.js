@@ -4,8 +4,6 @@ module.exports = (config) => {
 
     config.set({
 
-        concurrency: 2,
-
         files: [
             '../../test/unit/**/*.js'
         ],
@@ -84,7 +82,9 @@ module.exports = (config) => {
                 'FirefoxHeadless',
                 'FirefoxDeveloperHeadless',
                 'Safari'
-            ]
+            ],
+
+            concurrency: 2
 
         });
 
