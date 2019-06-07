@@ -51,7 +51,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-sauce-launcher": "^2.0.2",
     "karma-sinon-chai": "^2.0.2",
-    "karma-webpack": "^3.0.5",
+    "karma-webpack": "^4.0.0",
     "load-grunt-config": "^1.0.2",
     "memory-fs": "^0.4.1",
     "mocha": "^6.1.4",
