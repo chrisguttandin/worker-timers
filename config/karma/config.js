@@ -5,7 +5,7 @@ module.exports = (config) => {
     config.set({
 
         files: [
-            '../../test/unit/**/*.js'
+            '../../test/integration/**/*.js'
         ],
 
         frameworks: [
@@ -14,7 +14,7 @@ module.exports = (config) => {
         ],
 
         preprocessors: {
-            '../../test/unit/**/*.js': 'webpack'
+            '../../test/integration/**/*.js': 'webpack'
         },
 
         webpack: {
