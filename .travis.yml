@@ -10,4 +10,17 @@ env:
     - secure: A71UF9A7zadEc54bu2gjqzJ4MWT+w5nJALXAfFgDgbTIiMhiOhOQmZS5YReypwgtFbhy1fUZry+/cXfnd1dsZg9EIEzIKCO/yE/ihQCJRYgOtDon5pjAZ3BaTCWQSPXxks2Txz9Sv72DjK8+12EtWxB5iHngnumvsXM32uEj+48=
 install: npm ci || (rm -rf node_modules && npm install)
 language: node_js
-node_js: 12
+matrix:
+  include:
+    - env:
+      - TARGET=chrome
+      - TYPE=integration
+      node_js: 12
+    - env:
+      - TARGET=firefox
+      - TYPE=integration
+      node_js: 12
+    - env:
+      - TARGET=safari
+      - TYPE=integration
+      node_js: 12

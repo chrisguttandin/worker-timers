@@ -1,3 +1,10 @@
+const { env } = require('process');
+
+// eslint-disable-next-line padding-line-between-statements
+const filter = (predicate, ...tasks) => (predicate) ? tasks : [ ];
+const isTarget = (...targets) => (env.TARGET === undefined || targets.includes(env.TARGET));
+const isType = (...types) => (env.TYPE === undefined || types.includes(env.TYPE));
+
 module.exports = {
     build: [
         'clean:build',
@@ -6,10 +13,6 @@ module.exports = {
         'sh:build-es2018',
         'sh:build-es5'
     ],
-    continuous: [
-        'build',
-        'karma:continuous'
-    ],
     lint: [
         'sh:lint-config',
         'sh:lint-src',
@@ -17,6 +20,9 @@ module.exports = {
     ],
     test: [
         'build',
-        'karma:test'
+        ...filter(
+            isType('integration'),
+            ...filter(isTarget('chrome', 'firefox', 'safari'), 'karma:integration')
+        )
     ]
 };
