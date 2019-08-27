@@ -17,6 +17,10 @@ matrix:
       - TYPE=integration
       node_js: 12
     - env:
+      - TARGET=edge
+      - TYPE=expectation
+      node_js: 12
+    - env:
       - TARGET=firefox
       - TYPE=integration
       node_js: 12

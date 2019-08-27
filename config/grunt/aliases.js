@@ -21,6 +21,10 @@ module.exports = {
     test: [
         'build',
         ...filter(
+            isType('expectation'),
+            ...filter(isTarget('edge'), 'karma:expectation-edge')
+        ),
+        ...filter(
             isType('integration'),
             ...filter(isTarget('chrome', 'firefox', 'safari'), 'karma:integration')
         )
