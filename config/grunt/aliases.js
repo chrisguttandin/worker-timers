@@ -22,11 +22,11 @@ module.exports = {
         'build',
         ...filter(
             isType('expectation'),
-            ...filter(isTarget('edge'), 'karma:expectation-edge')
+            ...filter(isTarget('edge'), 'sh:test-expectation-edge')
         ),
         ...filter(
             isType('integration'),
-            ...filter(isTarget('chrome', 'firefox', 'safari'), 'karma:integration')
+            ...filter(isTarget('chrome', 'firefox', 'safari'), 'sh:test-integration')
         )
     ]
 };
