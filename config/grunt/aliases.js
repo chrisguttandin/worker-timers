@@ -26,7 +26,7 @@ module.exports = {
         ),
         ...filter(
             isType('integration'),
-            ...filter(isTarget('chrome', 'firefox', 'safari'), 'sh:test-integration')
+            ...filter(isTarget('chrome', 'edge', 'firefox', 'safari'), 'sh:test-integration')
         )
     ]
 };

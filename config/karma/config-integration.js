@@ -46,19 +46,24 @@ module.exports = (config) => {
                 ? [
                     'ChromeSauceLabs'
                 ]
-                : (env.TARGET === 'firefox')
+                : (env.TARGET === 'edge')
                     ? [
-                        'FirefoxSauceLabs'
+                        'EdgeSauceLabs'
                     ]
-                    : (env.TARGET === 'safari')
+                    : (env.TARGET === 'firefox')
                         ? [
-                            'SafariSauceLabs'
+                            'FirefoxSauceLabs'
                         ]
-                        : [
-                            'ChromeSauceLabs',
-                            'FirefoxSauceLabs',
-                            'SafariSauceLabs'
-                        ],
+                        : (env.TARGET === 'safari')
+                            ? [
+                                'SafariSauceLabs'
+                            ]
+                            : [
+                                'ChromeSauceLabs',
+                                'FirefoxSauceLabs',
+                                'EdgeSauceLabs',
+                                'SafariSauceLabs'
+                            ],
 
             captureTimeout: 120000,
 
@@ -67,6 +72,11 @@ module.exports = (config) => {
                     base: 'SauceLabs',
                     browserName: 'chrome',
                     platform: 'OS X 10.11'
+                },
+                EdgeSauceLabs: {
+                    base: 'SauceLabs',
+                    browserName: 'MicrosoftEdge',
+                    platform: 'Windows 10'
                 },
                 FirefoxSauceLabs: {
                     base: 'SauceLabs',
@@ -86,15 +96,30 @@ module.exports = (config) => {
 
     } else {
 
+        const environment = require('../environment/local.json');
+
         config.set({
 
             browsers: [
                 'ChromeHeadless',
                 'ChromeCanaryHeadless',
+                'EdgeSauceLabs',
                 'FirefoxHeadless',
                 'FirefoxDeveloperHeadless',
                 'Safari'
-            ]
+            ],
+
+            captureTimeout: 120000,
+
+            customLaunchers: {
+                EdgeSauceLabs: {
+                    base: 'SauceLabs',
+                    browserName: 'MicrosoftEdge',
+                    platform: 'Windows 10'
+                }
+            },
+
+            sauceLabs: environment.sauceLabs
 
         });
 
