@@ -15,4 +15,5 @@ export const setInterval = workerTimers.setInterval;
 
 export const setTimeout = workerTimers.setTimeout;
 
-URL.revokeObjectURL(url);
+// Bug #1: Edge doesn't like the URL to be revoked directly.
+setTimeout(() => URL.revokeObjectURL(url), 0);
