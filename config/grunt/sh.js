@@ -6,8 +6,11 @@ module.exports = (grunt) => {
         'build-es2018': {
             cmd: 'tsc -p src/tsconfig.json'
         },
-        'build-es5': {
+        'build-es5-bundle': {
             cmd: 'rollup -c config/rollup/bundle.js'
+        },
+        'build-es5-module': {
+            cmd: 'rollup -c config/rollup/module.js'
         },
         'lint-config': {
             cmd: `eslint --config config/eslint/config.json ${ (fix) ? '--fix ' : '' }--report-unused-disable-directives *.js config/**/*.js`

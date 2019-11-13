@@ -11,7 +11,8 @@ module.exports = {
         'webpack',
         'replace:worker',
         'sh:build-es2018',
-        'sh:build-es5'
+        'sh:build-es5-bundle',
+        'sh:build-es5-module'
     ],
     lint: [
         'sh:lint-config',
