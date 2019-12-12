@@ -1,19 +1,21 @@
 import { load } from 'worker-timers-broker';
+import { createLoadWorkerTimers } from './factories/load-worker-timers';
 import { worker } from './worker/worker';
 
-const blob: Blob = new Blob([ worker ], { type: 'application/javascript; charset=utf-8' });
+export * from './types';
 
-const url: string = URL.createObjectURL(blob);
+const loadWorkerTimers = createLoadWorkerTimers(load, worker);
 
-const workerTimers = load(url);
+import { TWorkerTimers } from './types';
 
-export const clearInterval = workerTimers.clearInterval;
+export const clearInterval: TWorkerTimers['clearInterval'] = (timerId) => loadWorkerTimers()
+    .clearInterval(timerId);
 
-export const clearTimeout = workerTimers.clearTimeout;
+export const clearTimeout: TWorkerTimers['clearTimeout'] = (timerId) => loadWorkerTimers()
+    .clearTimeout(timerId);
 
-export const setInterval = workerTimers.setInterval;
+export const setInterval: TWorkerTimers['setInterval'] = (func, delay) => loadWorkerTimers()
+    .setInterval(func, delay);
 
-export const setTimeout = workerTimers.setTimeout;
-
-// Bug #1: Edge doesn't like the URL to be revoked directly.
-setTimeout(() => URL.revokeObjectURL(url), 0);
+export const setTimeout: TWorkerTimers['setTimeout'] = (func, delay) => loadWorkerTimers()
+    .setTimeout(func, delay);
