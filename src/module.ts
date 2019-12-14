@@ -2,7 +2,11 @@ import { load } from 'worker-timers-broker';
 import { createLoadWorkerTimers } from './factories/load-worker-timers';
 import { worker } from './worker/worker';
 
-export * from './types';
+/*
+ * @todo Explicitly referencing the barrel file seems to be necessary when enabling the
+ * isolatedModules compiler option.
+ */
+export * from './types/index';
 
 const loadWorkerTimers = createLoadWorkerTimers(load, worker);
 
