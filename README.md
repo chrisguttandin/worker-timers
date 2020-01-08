@@ -1,3 +1,5 @@
+![logo](https://repository-images.githubusercontent.com/24792198/dd93c980-323f-11ea-8a14-a0299de4847a)
+
 # worker-timers
 
 **A replacement for setInterval() and setTimeout() which works in unfocused windows.**
