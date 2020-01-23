@@ -14,7 +14,8 @@ module.exports = (config) => {
             EdgeSauceLabs: {
                 base: 'SauceLabs',
                 browserName: 'MicrosoftEdge',
-                platform: 'Windows 10'
+                platform: 'Windows 10',
+                version: '18.17763'
             }
         },
 
