@@ -60,6 +60,12 @@ describe('module', () => {
             expect(id).to.be.a('number');
         });
 
+        it('should return a value which is greater than zero', () => {
+            id = workerTimers.setInterval(() => {}, 0);
+
+            expect(id).to.be.above(0);
+        });
+
         it('should constantly call a function with the given delay', function (done) {
             this.timeout(4000);
 
@@ -98,6 +104,12 @@ describe('module', () => {
             id = workerTimers.setTimeout(() => {}, 0);
 
             expect(id).to.be.a('number');
+        });
+
+        it('should return a value which is greater than zero', () => {
+            id = workerTimers.setTimeout(() => {}, 0);
+
+            expect(id).to.be.above(0);
         });
 
         it('should postpone a function for the given delay', (done) => {
