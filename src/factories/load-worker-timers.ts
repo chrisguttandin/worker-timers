@@ -8,7 +8,7 @@ export const createLoadWorkerTimers: TLoadWorkerTimersFactory = (load, worker) =
             return workerTimers;
         }
 
-        const blob = new Blob([ worker ], { type: 'application/javascript; charset=utf-8' });
+        const blob = new Blob([worker], { type: 'application/javascript; charset=utf-8' });
         const url = URL.createObjectURL(blob);
 
         workerTimers = load(url);

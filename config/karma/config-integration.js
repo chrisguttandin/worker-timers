@@ -1,17 +1,10 @@
 const { env } = require('process');
 
 module.exports = (config) => {
-
     config.set({
+        files: ['../../test/integration/**/*.js'],
 
-        files: [
-            '../../test/integration/**/*.js'
-        ],
-
-        frameworks: [
-            'mocha',
-            'sinon-chai'
-        ],
+        frameworks: ['mocha', 'sinon-chai'],
 
         preprocessors: {
             '../../test/integration/**/*.js': 'webpack'
@@ -20,50 +13,37 @@ module.exports = (config) => {
         webpack: {
             mode: 'development',
             module: {
-                rules: [ {
-                    test: /\.ts?$/,
-                    use: {
-                        loader: 'ts-loader'
+                rules: [
+                    {
+                        test: /\.ts?$/,
+                        use: {
+                            loader: 'ts-loader'
+                        }
                     }
-                } ]
+                ]
             },
             resolve: {
-                extensions: [ '.js', '.ts' ]
+                extensions: ['.js', '.ts']
             }
         },
 
         webpackMiddleware: {
             noInfo: true
         }
-
     });
 
     if (env.TRAVIS) {
-
         config.set({
-
-            browsers: (env.TARGET === 'chrome')
-                ? [
-                    'ChromeSauceLabs'
-                ]
-                : (env.TARGET === 'edge')
-                    ? [
-                        'EdgeSauceLabs'
-                    ]
-                    : (env.TARGET === 'firefox')
-                        ? [
-                            'FirefoxSauceLabs'
-                        ]
-                        : (env.TARGET === 'safari')
-                            ? [
-                                'SafariSauceLabs'
-                            ]
-                            : [
-                                'ChromeSauceLabs',
-                                'FirefoxSauceLabs',
-                                'EdgeSauceLabs',
-                                'SafariSauceLabs'
-                            ],
+            browsers:
+                env.TARGET === 'chrome'
+                    ? ['ChromeSauceLabs']
+                    : env.TARGET === 'edge'
+                    ? ['EdgeSauceLabs']
+                    : env.TARGET === 'firefox'
+                    ? ['FirefoxSauceLabs']
+                    : env.TARGET === 'safari'
+                    ? ['SafariSauceLabs']
+                    : ['ChromeSauceLabs', 'FirefoxSauceLabs', 'EdgeSauceLabs', 'SafariSauceLabs'],
 
             captureTimeout: 120000,
 
@@ -91,23 +71,12 @@ module.exports = (config) => {
             },
 
             tunnelIdentifier: env.TRAVIS_JOB_NUMBER
-
         });
-
     } else {
-
         const environment = require('../environment/local.json');
 
         config.set({
-
-            browsers: [
-                'ChromeHeadless',
-                'ChromeCanaryHeadless',
-                'EdgeSauceLabs',
-                'FirefoxHeadless',
-                'FirefoxDeveloperHeadless',
-                'Safari'
-            ],
+            browsers: ['ChromeHeadless', 'ChromeCanaryHeadless', 'EdgeSauceLabs', 'FirefoxHeadless', 'FirefoxDeveloperHeadless', 'Safari'],
 
             captureTimeout: 120000,
 
@@ -120,9 +89,6 @@ module.exports = (config) => {
             },
 
             sauceLabs: environment.sauceLabs
-
         });
-
     }
-
 };

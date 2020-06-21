@@ -1,12 +1,8 @@
 const { env } = require('process');
 
 module.exports = (config) => {
-
     config.set({
-
-        browsers: [
-            'EdgeSauceLabs'
-        ],
+        browsers: ['EdgeSauceLabs'],
 
         captureTimeout: 120000,
 
@@ -19,15 +15,9 @@ module.exports = (config) => {
             }
         },
 
-        files: [
-            '../../test/expectation/any/**/*.js',
-            '../../test/expectation/edge/**/*.js'
-        ],
+        files: ['../../test/expectation/any/**/*.js', '../../test/expectation/edge/**/*.js'],
 
-        frameworks: [
-            'mocha',
-            'sinon-chai'
-        ],
+        frameworks: ['mocha', 'sinon-chai'],
 
         preprocessors: {
             '../../test/expectation/any/**/*.js': 'webpack',
@@ -37,42 +27,34 @@ module.exports = (config) => {
         webpack: {
             mode: 'development',
             module: {
-                rules: [ {
-                    test: /\.ts?$/,
-                    use: {
-                        loader: 'ts-loader'
+                rules: [
+                    {
+                        test: /\.ts?$/,
+                        use: {
+                            loader: 'ts-loader'
+                        }
                     }
-                } ]
+                ]
             },
             resolve: {
-                extensions: [ '.js', '.ts' ]
+                extensions: ['.js', '.ts']
             }
         },
 
         webpackMiddleware: {
             noInfo: true
         }
-
     });
 
     if (env.TRAVIS) {
-
         config.set({
-
             tunnelIdentifier: env.TRAVIS_JOB_NUMBER
-
         });
-
     } else {
-
         const environment = require('../environment/local.json');
 
         config.set({
-
             sauceLabs: environment.sauceLabs
-
         });
-
     }
-
 };
