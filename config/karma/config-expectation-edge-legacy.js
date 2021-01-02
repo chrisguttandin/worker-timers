@@ -1,27 +1,34 @@
 const { env } = require('process');
+const { DefinePlugin } = require('webpack');
 
 module.exports = (config) => {
     config.set({
-        browsers: ['EdgeSauceLabs'],
+        basePath: '../../',
 
-        captureTimeout: 120000,
+        browserDisconnectTimeout: 100000,
+
+        browserNoActivityTimeout: 100000,
+
+        browsers: ['EdgeLegacySauceLabs'],
+
+        concurrency: 1,
 
         customLaunchers: {
-            EdgeSauceLabs: {
+            EdgeLegacySauceLabs: {
                 base: 'SauceLabs',
                 browserName: 'MicrosoftEdge',
+                captureTimeout: 300,
                 platform: 'Windows 10',
                 version: '18.17763'
             }
         },
 
-        files: ['../../test/expectation/any/**/*.js', '../../test/expectation/edge/**/*.js'],
+        files: ['test/expectation/edge/legacy/**/*.js'],
 
         frameworks: ['mocha', 'sinon-chai'],
 
         preprocessors: {
-            '../../test/expectation/any/**/*.js': 'webpack',
-            '../../test/expectation/edge/**/*.js': 'webpack'
+            'test/expectation/edge/legacy/**/*.js': 'webpack'
         },
 
         webpack: {
@@ -36,6 +43,13 @@ module.exports = (config) => {
                     }
                 ]
             },
+            plugins: [
+                new DefinePlugin({
+                    'process.env': {
+                        CI: JSON.stringify(env.CI)
+                    }
+                })
+            ],
             resolve: {
                 extensions: ['.js', '.ts']
             }
@@ -46,9 +60,13 @@ module.exports = (config) => {
         }
     });
 
-    if (env.TRAVIS) {
+    if (env.CI) {
         config.set({
-            tunnelIdentifier: env.TRAVIS_JOB_NUMBER
+            captureTimeout: 300000,
+
+            sauceLabs: {
+                recordVideo: false
+            }
         });
     } else {
         const environment = require('../environment/local.json');
