@@ -31,6 +31,8 @@ module.exports = (config) => {
             'test/expectation/edge/legacy/**/*.js': 'webpack'
         },
 
+        reporters: ['dots'],
+
         webpack: {
             mode: 'development',
             module: {
