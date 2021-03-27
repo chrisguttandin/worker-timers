@@ -61,7 +61,7 @@
         "sinon-chai": "^3.6.0",
         "terser-webpack-plugin": "^5.1.1",
         "ts-loader": "^8.0.18",
-        "tsconfig-holy-grail": "^11.0.48",
+        "tsconfig-holy-grail": "^11.0.49",
         "tslint": "^6.1.3",
         "tslint-config-holy-grail": "^53.2.10",
         "typescript": "^4.2.3",
