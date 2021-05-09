@@ -4,7 +4,6 @@
 
 **A replacement for setInterval() and setTimeout() which works in unfocused windows.**
 
-[![tests](https://img.shields.io/travis/chrisguttandin/worker-timers/master.svg?style=flat-square)](https://travis-ci.org/chrisguttandin/worker-timers)
 [![dependencies](https://img.shields.io/david/chrisguttandin/worker-timers.svg?style=flat-square)](https://www.npmjs.com/package/worker-timers)
 [![version](https://img.shields.io/npm/v/worker-timers.svg?style=flat-square)](https://www.npmjs.com/package/worker-timers)
 
@@ -74,7 +73,7 @@ This is not possible with workerTimers. As mentioned above workerTimers will thr
 provided with an unknown id.
 
 ```js
-const periodicWork = () => { };
+const periodicWork = () => {};
 
 // This will stop the interval.
 const windowId = window.setInterval(periodicWork, 100);
