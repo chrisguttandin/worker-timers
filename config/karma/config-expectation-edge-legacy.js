@@ -25,7 +25,7 @@ module.exports = (config) => {
 
         files: ['test/expectation/edge/legacy/**/*.js'],
 
-        frameworks: ['mocha', 'sinon-chai'],
+        frameworks: ['mocha'],
 
         preprocessors: {
             'test/expectation/edge/legacy/**/*.js': 'webpack'
