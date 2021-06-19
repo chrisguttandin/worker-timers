@@ -73,12 +73,6 @@
         "src/"
     ],
     "homepage": "https://github.com/chrisguttandin/worker-timers",
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint --edit --extends @commitlint/config-angular",
-            "pre-commit": "pretty-quick --config config/prettier/config.json --staged && grunt lint"
-        }
-    },
     "keywords": [
         "Web Workers",
         "WindowTimers",
@@ -97,6 +91,7 @@
         "url": "https://github.com/chrisguttandin/worker-timers.git"
     },
     "scripts": {
+        "prepare": "husky install",
         "prepublishOnly": "grunt build",
         "test": "grunt lint && grunt test"
     },
