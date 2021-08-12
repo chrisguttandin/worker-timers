@@ -60,9 +60,7 @@ describe('module', () => {
             expect(id).to.be.above(0);
         });
 
-        it('should constantly call a function with the given delay', function (done) {
-            this.timeout(4000);
-
+        it('should constantly call a function with the given delay', (done) => {
             let before = performance.now();
             let calls = 0;
 
