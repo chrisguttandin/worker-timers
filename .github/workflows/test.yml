@@ -15,10 +15,10 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - node-version: 14.x
+                    - node-version: 16.x
                       target: edge-legacy
                       type: expectation
-                node-version: [14.x]
+                node-version: [16.x]
                 target: [chrome, firefox, safari]
                 type: [integration]
             max-parallel: 3
