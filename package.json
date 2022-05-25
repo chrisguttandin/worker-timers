@@ -17,7 +17,7 @@
     "dependencies": {
         "@babel/runtime": "^7.18.2",
         "tslib": "^2.4.0",
-        "worker-timers-broker": "^6.0.70",
+        "worker-timers-broker": "^6.0.71",
         "worker-timers-worker": "^7.0.37"
     },
     "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows.",
