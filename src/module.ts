@@ -1,21 +1,13 @@
 import { load } from 'worker-timers-broker';
-import { createLoadWorkerTimers } from './factories/load-worker-timers';
+import { createLoadOrReturnBroker } from './factories/load-or-return-broker';
 import { worker } from './worker/worker';
 
-/*
- * @todo Explicitly referencing the barrel file seems to be necessary when enabling the
- * isolatedModules compiler option.
- */
-export * from './types/index';
+const loadOrReturnBroker = createLoadOrReturnBroker(load, worker);
 
-const loadWorkerTimers = createLoadWorkerTimers(load, worker);
+export const clearInterval: ReturnType<typeof load>['clearInterval'] = (timerId) => loadOrReturnBroker().clearInterval(timerId);
 
-import { TWorkerTimers } from './types';
+export const clearTimeout: ReturnType<typeof load>['clearTimeout'] = (timerId) => loadOrReturnBroker().clearTimeout(timerId);
 
-export const clearInterval: TWorkerTimers['clearInterval'] = (timerId) => loadWorkerTimers().clearInterval(timerId);
+export const setInterval: ReturnType<typeof load>['setInterval'] = (func, delay) => loadOrReturnBroker().setInterval(func, delay);
 
-export const clearTimeout: TWorkerTimers['clearTimeout'] = (timerId) => loadWorkerTimers().clearTimeout(timerId);
-
-export const setInterval: TWorkerTimers['setInterval'] = (func, delay) => loadWorkerTimers().setInterval(func, delay);
-
-export const setTimeout: TWorkerTimers['setTimeout'] = (func, delay) => loadWorkerTimers().setTimeout(func, delay);
+export const setTimeout: ReturnType<typeof load>['setTimeout'] = (func, delay) => loadOrReturnBroker().setTimeout(func, delay);
