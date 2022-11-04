@@ -18,6 +18,9 @@ jobs:
                     - node-version: 16.x
                       target: edge-legacy
                       type: expectation
+                    - node-version: 16.x
+                      target: node
+                      type: integration
                 node-version: [16.x]
                 target: [chrome, firefox, safari]
                 type: [integration]

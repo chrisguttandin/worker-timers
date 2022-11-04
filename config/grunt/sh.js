@@ -9,6 +9,9 @@ module.exports = (grunt) => {
         'build-es5': {
             cmd: 'rollup --config config/rollup/bundle.js'
         },
+        'build-node': {
+            cmd: 'babel ./build/es2019 --config-file ./config/babel/build.json --out-dir ./build/node'
+        },
         'clean': {
             cmd: 'rimraf build/*'
         },
@@ -24,8 +27,11 @@ module.exports = (grunt) => {
         'test-expectation-edge-legacy': {
             cmd: `karma start config/karma/config-expectation-edge-legacy.js ${continuous ? '--concurrency Infinity' : '--single-run'}`
         },
-        'test-integration': {
+        'test-integration-browser': {
             cmd: `karma start config/karma/config-integration.js ${continuous ? '--concurrency Infinity' : '--single-run'}`
+        },
+        'test-integration-node': {
+            cmd: 'mocha --bail --parallel --recursive --require config/mocha/config-integration.js test/integration'
         },
         'webpack': {
             cmd: `webpack --config config/webpack/worker-es2019.js`
