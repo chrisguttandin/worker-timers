@@ -10,7 +10,6 @@ module.exports = {
     lint: ['sh:lint-config', 'sh:lint-src', 'sh:lint-test'],
     test: [
         'build',
-        ...filter(isType('expectation'), ...filter(isTarget('edge-legacy'), 'sh:test-expectation-edge-legacy')),
         ...filter(
             isType('integration'),
             ...filter(isTarget('chrome', 'firefox', 'safari'), 'sh:test-integration-browser'),

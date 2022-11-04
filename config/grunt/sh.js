@@ -24,9 +24,6 @@ module.exports = (grunt) => {
         'lint-test': {
             cmd: `eslint --config config/eslint/test.json --ext .js ${fix ? '--fix ' : ''}--report-unused-disable-directives test/`
         },
-        'test-expectation-edge-legacy': {
-            cmd: `karma start config/karma/config-expectation-edge-legacy.js ${continuous ? '--concurrency Infinity' : '--single-run'}`
-        },
         'test-integration-browser': {
             cmd: `karma start config/karma/config-integration.js ${continuous ? '--concurrency Infinity' : '--single-run'}`
         },
