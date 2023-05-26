@@ -23,7 +23,7 @@
     "description": "A replacement for setInterval() and setTimeout() which works in unfocused windows.",
     "devDependencies": {
         "@babel/cli": "^7.21.5",
-        "@babel/core": "^7.21.8",
+        "@babel/core": "^7.22.0",
         "@babel/plugin-external-helpers": "^7.18.6",
         "@babel/plugin-transform-runtime": "^7.21.4",
         "@babel/preset-env": "^7.21.5",
