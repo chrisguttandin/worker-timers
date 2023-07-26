@@ -92,6 +92,7 @@
         "url": "https://github.com/chrisguttandin/worker-timers.git"
     },
     "scripts": {
+        "build": "rimraf build/* && webpack --config config/webpack/worker-es2019.js && tsc --project src/tsconfig.json && rollup --config config/rollup/bundle.mjs && babel ./build/es2019 --config-file ./config/babel/build.json --out-dir ./build/node",
         "lint": "npm run lint:config && npm run lint:src && npm run lint:test",
         "lint:config": "eslint --config config/eslint/config.json --ext .js --report-unused-disable-directives config/",
         "lint:src": "tslint --config config/tslint/src.json --project src/tsconfig.json src/*.ts src/**/*.ts",
