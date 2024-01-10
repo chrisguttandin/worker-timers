@@ -15,7 +15,7 @@
         }
     ],
     "dependencies": {
-        "@babel/runtime": "^7.23.6",
+        "@babel/runtime": "^7.23.8",
         "tslib": "^2.6.2",
         "worker-timers-broker": "^6.1.0",
         "worker-timers-worker": "^7.0.64"
