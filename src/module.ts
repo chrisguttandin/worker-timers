@@ -8,6 +8,6 @@ export const clearInterval: ReturnType<typeof load>['clearInterval'] = (timerId)
 
 export const clearTimeout: ReturnType<typeof load>['clearTimeout'] = (timerId) => loadOrReturnBroker().clearTimeout(timerId);
 
-export const setInterval: ReturnType<typeof load>['setInterval'] = (func, delay) => loadOrReturnBroker().setInterval(func, delay);
+export const setInterval: ReturnType<typeof load>['setInterval'] = (...args) => loadOrReturnBroker().setInterval(...args);
 
-export const setTimeout: ReturnType<typeof load>['setTimeout'] = (func, delay) => loadOrReturnBroker().setTimeout(func, delay);
+export const setTimeout: ReturnType<typeof load>['setTimeout'] = (...args) => loadOrReturnBroker().setTimeout(...args);
