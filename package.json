@@ -59,7 +59,7 @@
         "rollup": "^4.9.4",
         "sinon": "^17.0.1",
         "sinon-chai": "^3.7.0",
-        "terser-webpack-plugin": "^5.3.9",
+        "terser-webpack-plugin": "^5.3.10",
         "ts-loader": "^9.5.1",
         "tsconfig-holy-grail": "^14.0.8",
         "tslint": "^6.1.3",
