@@ -42,21 +42,9 @@ var timeoutId = setTimeout(() => {
 clearTimeout(timeoutId);
 ```
 
-## Error Handling
-
-The native WindowTimers are very forgiving. Calling `clearInterval()` or `clearTimeout()` without a value or with an id which doesn't exist will get ignored. In contrast to that `worker-timers` will throw an error when doing so.
-
-```js
-// This will return undefined.
-window.clearTimeout('not-a-timeout-id');
-
-// This will throw an error.
-clearTimeout('not-a-timeout-id');
-```
-
 ## Differentiation between Intervals and Timeouts
 
-Another difference between `worker-timers` and WindowTimers is that this package maintains two separate lists to store the ids of intervals and timeouts internally. WindowTimers do only have one list which allows intervals to be cancelled by calling `clearTimeout()` and the other way round. This is not possible with `worker-timers`. As mentioned above `worker-timers` will throw an error when provided with an unknown id.
+The native WindowTimers only maintain a single list of timers. But `worker-timers` maintains two separate lists to store the ids of intervals and timeouts internally. WindowTimers allows intervals to be cancelled by calling `clearTimeout()` and the other way round because it stores all timers in a single list. This is not possible with `worker-timers`.
 
 ```js
 const periodicWork = () => {};
@@ -65,7 +53,7 @@ const periodicWork = () => {};
 const windowId = window.setInterval(periodicWork, 100);
 window.clearTimeout(windowId);
 
-// This will throw an error.
+// This will not cancel the interval. It may cancel a timeout.
 const workerId = setInterval(periodicWork, 100);
 clearTimeout(workerId);
 ```
