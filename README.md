@@ -65,3 +65,7 @@ This package is intended to be used in the browser and requires the browser to h
 ## Angular (& Zone.js)
 
 If `worker-timers` is used inside of an Angular app and Zone.js (which is the default) is used to detect changes, the behavior of `worker-timers` can be confusing. Angular is using Zone.js which is patching the native `setInterval()` and `setTimeout()` functions to get notified about the invocation of their callback functions. But Angular (more specifically Zone.js) is not aware of `worker-timers` and doesn't get notified about any callback invocations. Therefore Angular needs to be notified manually about state changes that occur inside of a callback function which was scheduled with the help of `worker-timers`.
+
+## Security contact information
+
+To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.
