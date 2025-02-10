@@ -29,13 +29,13 @@ The usage is exactly the same (despite of the [error handling](#error-handling) 
 as with the corresponding functions on the global scope.
 
 ```js
-var intervalId = setInterval(() => {
+const intervalId = setInterval(() => {
     // do something many times
 }, 100);
 
 clearInterval(intervalId);
 
-var timeoutId = setTimeout(() => {
+const timeoutId = setTimeout(() => {
     // do something once
 }, 100);
 
