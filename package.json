@@ -48,7 +48,7 @@
         "karma-webkit-launcher": "^2.6.0",
         "karma-webpack": "^5.0.1",
         "lint-staged": "^15.5.0",
-        "memfs": "^4.17.1",
+        "memfs": "^4.17.2",
         "mocha": "^11.2.2",
         "prettier": "^3.5.3",
         "rimraf": "^6.0.1",
