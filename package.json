@@ -52,7 +52,7 @@
         "mocha": "^11.7.5",
         "prettier": "^3.6.2",
         "rimraf": "^6.1.2",
-        "rollup": "^4.52.4",
+        "rollup": "^4.53.3",
         "sinon": "^17.0.2",
         "sinon-chai": "^3.7.0",
         "terser-webpack-plugin": "^5.3.14",
