@@ -1,61 +1,72 @@
-import * as workerTimers from '../../src/module';
+import { afterEach, describe, expect, it } from 'vitest';
+import { clearInterval, clearTimeout, setInterval, setTimeout } from '../../src/module';
 
 describe('module', () => {
     describe('clearInterval()', () => {
         it('should be a function', () => {
-            expect(workerTimers.clearInterval).to.be.a('function');
+            expect(clearInterval).to.be.a('function');
         });
 
         if (typeof window !== 'undefined') {
-            it('should not call the function after clearing the interval', (done) => {
-                const id = workerTimers.setInterval(() => {
-                    done(new Error('This should never be called.'));
+            it('should not call the function after clearing the interval', () => {
+                const { promise, reject, resolve } = Promise.withResolvers();
+                const id = setInterval(() => {
+                    reject(new Error('This should never be called.'));
                 }, 100);
 
-                workerTimers.clearInterval(id);
+                clearInterval(id);
 
                 // Wait 200ms to be sure the function never gets called.
-                setTimeout(done, 200);
+                window.setTimeout(resolve, 200);
+
+                return promise;
             });
 
-            it('should not call the function anymore after clearing the interval after the first callback', (done) => {
-                let id = workerTimers.setInterval(() => {
+            it('should not call the function anymore after clearing the interval after the first callback', () => {
+                const { promise, reject, resolve } = Promise.withResolvers();
+
+                let id = setInterval(() => {
                     if (id === null) {
-                        done(new Error('This should never be called.'));
+                        reject(new Error('This should never be called.'));
                     }
 
-                    workerTimers.clearInterval(id);
+                    clearInterval(id);
                     id = null;
                 }, 50);
 
                 // Wait 200ms to be sure the function gets not called anymore.
-                setTimeout(done, 200);
+                window.setTimeout(resolve, 200);
+
+                return promise;
             });
         }
     });
 
     describe('clearTimeout()', () => {
         it('should be a function', () => {
-            expect(workerTimers.clearTimeout).to.be.a('function');
+            expect(clearTimeout).to.be.a('function');
         });
 
         if (typeof window !== 'undefined') {
-            it('should not call the function after clearing the timeout', (done) => {
-                const id = workerTimers.setTimeout(() => {
-                    done(new Error('This should never be called.'));
+            it('should not call the function after clearing the timeout', () => {
+                const { promise, reject, resolve } = Promise.withResolvers();
+                const id = setTimeout(() => {
+                    reject(new Error('This should never be called.'));
                 }, 100);
 
-                workerTimers.clearTimeout(id);
+                clearTimeout(id);
 
                 // Wait 200ms to be sure the function never gets called.
-                setTimeout(done, 200);
+                window.setTimeout(resolve, 200);
+
+                return promise;
             });
         }
     });
 
     describe('setInterval()', () => {
         it('should be a function', () => {
-            expect(workerTimers.setInterval).to.be.a('function');
+            expect(setInterval).to.be.a('function');
         });
 
         if (typeof window !== 'undefined') {
@@ -63,22 +74,24 @@ describe('module', () => {
                 let id;
 
                 afterEach(() => {
-                    workerTimers.clearInterval(id);
+                    clearInterval(id);
                 });
 
                 it('should return a numeric id', () => {
-                    id = workerTimers.setInterval(() => {}, 0);
+                    id = setInterval(() => {}, 0);
 
                     expect(id).to.be.a('number');
                 });
 
                 it('should return a value which is greater than zero', () => {
-                    id = workerTimers.setInterval(() => {}, 0);
+                    id = setInterval(() => {}, 0);
 
                     expect(id).to.be.above(0);
                 });
 
-                it('should constantly call a function with the given delay', (done) => {
+                it('should constantly call a function with the given delay', () => {
+                    const { promise, resolve } = Promise.withResolvers();
+
                     let before = performance.now();
                     let calls = 0;
 
@@ -90,14 +103,16 @@ describe('module', () => {
 
                         // Test five calls.
                         if (calls > 4) {
-                            done();
+                            resolve();
                         }
 
                         before = now;
                         calls += 1;
                     }
 
-                    id = workerTimers.setInterval(func, 100);
+                    id = setInterval(func, 100);
+
+                    return promise;
                 });
             });
         }
@@ -105,7 +120,7 @@ describe('module', () => {
 
     describe('setTimeout()', () => {
         it('should be a function', () => {
-            expect(workerTimers.setTimeout).to.be.a('function');
+            expect(setTimeout).to.be.a('function');
         });
 
         if (typeof window !== 'undefined') {
@@ -113,22 +128,23 @@ describe('module', () => {
                 let id;
 
                 afterEach(() => {
-                    workerTimers.clearTimeout(id);
+                    clearTimeout(id);
                 });
 
                 it('should return a numeric id', () => {
-                    id = workerTimers.setTimeout(() => {}, 0);
+                    id = setTimeout(() => {}, 0);
 
                     expect(id).to.be.a('number');
                 });
 
                 it('should return a value which is greater than zero', () => {
-                    id = workerTimers.setTimeout(() => {}, 0);
+                    id = setTimeout(() => {}, 0);
 
                     expect(id).to.be.above(0);
                 });
 
-                it('should postpone a function for the given delay', (done) => {
+                it('should postpone a function for the given delay', () => {
+                    const { promise, resolve } = Promise.withResolvers();
                     const before = performance.now();
 
                     function func() {
@@ -136,10 +152,12 @@ describe('module', () => {
 
                         expect(elapsed).to.be.at.least(100);
 
-                        done();
+                        resolve();
                     }
 
-                    id = workerTimers.setTimeout(func, 100);
+                    id = setTimeout(func, 100);
+
+                    return promise;
                 });
             });
         }
