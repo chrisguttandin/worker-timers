@@ -44,7 +44,6 @@
         "prettier": "^3.6.2",
         "rimraf": "^6.1.2",
         "rollup": "^4.53.3",
-        "sinon-chai": "^3.7.0",
         "terser-webpack-plugin": "^5.3.14",
         "ts-loader": "^9.5.4",
         "tsconfig-holy-grail": "^15.0.2",
