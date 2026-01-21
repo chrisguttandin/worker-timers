@@ -43,7 +43,7 @@
         "memfs": "^4.56.9",
         "prettier": "^3.8.1",
         "rimraf": "^6.1.2",
-        "rollup": "^4.55.1",
+        "rollup": "^4.55.3",
         "terser-webpack-plugin": "^5.3.16",
         "tsconfig-holy-grail": "^15.0.3",
         "tslint": "^6.1.3",
