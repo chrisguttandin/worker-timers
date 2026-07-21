@@ -52,7 +52,7 @@
         "typescript": "^5.9.3",
         "vitest": "^4.1.10",
         "webpack": "^5.108.4",
-        "webpack-cli": "^7.0.3"
+        "webpack-cli": "^7.2.1"
     },
     "files": [
         "build/es2019/",
