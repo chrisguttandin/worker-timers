@@ -73,6 +73,7 @@
     "main": "build/es5/bundle.js",
     "module": "build/es2019/module.js",
     "name": "worker-timers",
+    "packageManager": "npm@12",
     "repository": {
         "type": "git",
         "url": "https://github.com/chrisguttandin/worker-timers.git"
